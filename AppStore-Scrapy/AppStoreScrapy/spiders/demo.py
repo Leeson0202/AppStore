@@ -30,7 +30,7 @@ class DemoSpider(scrapy.Spider):
             # 'div[2]/div/div[1]/figure/a/img'
             icon = each.xpath(
                 'div/div[1]/a[2]/img/@src').extract()
-            description = each.xpath(
+            article = each.xpath(
                 'div/div[2]/article/text()').extract()
 
             type1 = each.xpath(
@@ -43,8 +43,8 @@ class DemoSpider(scrapy.Spider):
                 item['name'] = name[0]
             if icon:
                 item['icon'] = icon[0]
-            if description:
-                item['description'] = description[0]
+            if article:
+                item['article'] = article[0]
             if type1:
                 item['type'] = type1[0]
             if label:
@@ -53,7 +53,6 @@ class DemoSpider(scrapy.Spider):
             items.append(item)
 
         print(len(items))
-        scrapy.Request()
 
         # 直接返回最后数据
         return items

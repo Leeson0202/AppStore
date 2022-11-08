@@ -15,10 +15,12 @@ class AppStoreScrapyItem(scrapy.Item):
 
     name = scrapy.Field()  # app名字
     icon = scrapy.Field()  # 图标
-    description = scrapy.Field()  # 介绍
+    description = scrapy.Field()  # 描述
+    article = scrapy.Field()  # 正文
     date = scrapy.Field()  # 发布时间
 
     version = scrapy.Field()  # 发布版本
-    link = scrapy.Field()  # 链接
+    link = scrapy.Field()  # 下载链接
+    href = scrapy.Field()  # 引用url
 
 
