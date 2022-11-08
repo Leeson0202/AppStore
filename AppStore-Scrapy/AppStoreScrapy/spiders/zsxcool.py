@@ -131,7 +131,7 @@ class ZsxcoolSpider(scrapy.Spider):
             if not link:
                 link = card.xpath('div/div[1]/a[2]/@href').get()
             # 少爬点，差不多行了
-            if self.cardCount[_type] > 200:
+            if self.cardCount[_type] > 250:
                 return
             yield scrapy.Request(url=link, callback=self.parse_page, dont_filter=True,
                                  meta={"type": _type, 'link': link})
