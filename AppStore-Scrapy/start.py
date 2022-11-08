@@ -1,2 +1,3 @@
 from scrapy import cmdline
-cmdline.execute('scrapy crawl demo -o drug1.json'.split())
+
+cmdline.execute('scrapy crawl zsxcool -o drug.json'.split())
