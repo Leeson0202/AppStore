@@ -32,7 +32,7 @@ export default {
             })
         },
         GetLabels(context, keyword) {
-            let labelNames = {'all':'全部','learn': '学习', 'enjoy': '娱乐', 'game': '游戏', 'tools': '工具'};
+            let labelNames = {'all': '全部', 'program': '编程', 'cut': '剪辑', 'tool': '工具', 'system': '系统'};
             axios.get(context.state.base_url + "/search", {params: {"keywords": keyword}}).then(
                 res => {
                     // console.log(res.data);
