@@ -3,7 +3,6 @@ from AppStoreScrapy.items import AppStoreScrapyItem
 from bs4 import BeautifulSoup
 
 
-# noinspection DuplicatedCode
 # 解析文章和链接的函数
 def parse_article(article):
     article = article.replace("<strong>", "**")
