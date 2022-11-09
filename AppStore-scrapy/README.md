@@ -51,7 +51,7 @@
 
 
 
-![image-20221110021106185](https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110021106185.png)
+<img src="https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110021106185.png" alt="image-20221110021106185" style="zoom: 67%;" />
 
 
 
@@ -73,17 +73,13 @@
 
 
 
-
-
-
-
 ### 正式开始
 
 #### 每个标签有多少页？
 
 鼠标移上来就看到了，直接xpath
 
-<img src="https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110022349929.png" alt="image-20221110022349929" style="width:90%;text-align: center" />
+<img src="https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110022349929.png" alt="image-20221110022349929" style="zoom: 67%;" />
 
 
 
@@ -91,7 +87,7 @@
 
 然后就可以获得他的那个具体应用的连接（使用xpath很快就搞出来了）
 
-<img src="https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110021924597.png" alt="image-20221110021924597" style="width:90%;" />
+<img src="https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110021924597.png" alt="image-20221110021924597" style="zoom: 67%;" />
 
 
 
@@ -99,7 +95,7 @@
 
 比如这个页面，这里主要是内容主体比较难爬，有文字和图片，最后转成markdown，方便储存。
 
-![image-20221110022803586](https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110022803586.png)
+<img src="https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110022803586.png" alt="image-20221110022803586" style="zoom:67%;" />
 
 
 
