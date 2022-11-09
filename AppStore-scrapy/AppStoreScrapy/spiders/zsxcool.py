@@ -4,6 +4,7 @@ from bs4 import BeautifulSoup
 
 
 # 解析文章和链接的函数
+# 传入的article html文本
 def parse_article(article):
     article = article.replace("<strong>", "**")
     article = article.replace("</strong>", "**")
@@ -130,7 +131,7 @@ class ZsxcoolSpider(scrapy.Spider):
             if not link:
                 link = card.xpath('div/div[1]/a[2]/@href').get()
             # 少爬点，差不多行了
-            if self.cardCount[_type] > 250:
+            if self.cardCount[_type] > 300:
                 return
             yield scrapy.Request(url=link, callback=self.parse_page, dont_filter=True,
                                  meta={"type": _type, 'link': link})
@@ -178,6 +179,8 @@ class ZsxcoolSpider(scrapy.Spider):
         item['description'] = description
         # 调用自定义函数 解析文章和下载链接
         article, link = parse_article(article)
+        if not link:
+            return
         item['article'] = article
         item['link'] = link
         item['date'] = date

@@ -10,8 +10,7 @@ create table type
     `name` varchar(40) not null comment 'type名称'
 );
 insert into type(`key`, `name`)
-values ('all', '全部'),
-       ('mac', 'Mac OS'),
+values ('mac', 'Mac OS'),
        ('windows', 'Windows'),
        ('android', 'Android');
 
@@ -22,8 +21,7 @@ create table label
     `name` varchar(40) not null comment 'label名称'
 );
 insert into label(`key`, `name`)
-values ('all', '全部'),
-       ('learn', '学习'),
+values ('learn', '学习'),
        ('enjoy', '娱乐'),
        ('game', '游戏'),
        ('tools', '工具');
@@ -34,38 +32,41 @@ create table app
     `id`          int primary key auto_increment comment 'appID',
     `icon`        varchar(500) not null default '' comment '图标',
     `name`        varchar(100) not null comment 'app name',
-    `description` text         not null comment '介绍',
-    `date`        date         not null comment '发布时间',
-    index idx_name (name),
+    `description` varchar(200) not null comment '描述',
+    `article`     text         not null comment '正文',
+    `view`        int                   default 0 comment '浏览数',
+    `date`        datetime              default NOW() comment '发布时间',
+    `href`        varchar(200) comment '原地址',
+    fulltext idx_name (name),
     fulltext idx_des (description)
 );
 
 -- 软件版本和链接
-create table appVersion
+create table appLink
 (
     `id`      int comment 'appID',
-    `name`    varchar(100) not null comment 'app name',
-    `version` varchar(20) comment '版本',
+    `name`    varchar(300) not null comment '下载名称',
+    `version` varchar(20) default '1.1' comment '版本',
     `link`    varchar(500) not null comment '链接',
-    `date`    date         not null comment '发布时间',
+    `date`    datetime    default now() comment '发布时间',
     index idx_id (id)
 );
 
 -- 软件 机型表
 create table appType
 (
-    `Type-key` varchar(30) comment 'type key',
-    `app-id`   int comment 'appID',
-    index idx_app (`app-id`)
+    `type_key` varchar(30) comment 'type key',
+    `app_id`   int comment 'appID',
+    index idx_app (`app_id`)
 
 );
 
 -- 软件 分类表
 create table appLabel
 (
-    `label-key` varchar(30) comment 'label key',
-    `app-id`    int comment 'appID',
-    index idx_app (`app-id`)
+    `label_key` varchar(30) comment 'label key',
+    `app_id`    int comment 'appID',
+    index idx_app (`app_id`)
 );
 
 
