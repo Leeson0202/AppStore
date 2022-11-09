@@ -5,9 +5,11 @@
 
 
 
-
-
 ## 启动方式
+
+**安装必要的库**
+
+> pip install requests, beautifulsoup4, scrapy, pymysql 
 
 ### 执行爬虫
 
@@ -25,17 +27,15 @@
   >
   > scrapy crawl zsxcool -o ./datas/zsxcoolData.csv
 
-默认文件储存在了 ./datas/zsxcoolData.json 
+默认文件储存在了 ./datas/**zsxcoolData.json** 
 
 ### 存入数据库
 
-需要转数据库的需要先执行数据库脚步(appstore.sql)，再执行main.py
+需要转数据库的需要先执行数据库脚步(**appstore.sql**)，再执行parse_article
 
 > // 在sql 命令行里面输入 
 >
 > source appstore.sql
-
-
 
 
 
@@ -57,9 +57,9 @@
 
 优点：
 
-- 分类明确，通过系统来爬很方便
-- 应用免费，而且没有什么广告
-- 界面很好看，可以为后面vue抄袭下（那个轮播图真的好看）
+- 分类明确，标签简单，**爬很方便**
+- 应用**免费**，而且没有什么广告
+- **界面很好看**，可以为后面vue抄袭下（那个轮播图真的好看）
 
 
 
