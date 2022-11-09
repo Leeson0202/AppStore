@@ -5,6 +5,8 @@
 
 
 
+
+
 ## 启动方式
 
 ### 执行爬虫
@@ -35,6 +37,8 @@
 
 
 
+
+
 ## Scrapy的开始
 
   因为我要做一个AppStore的Web应用，没得数据所有自己也会爬虫，所有就直接干。（也只是练手哈，没有用于商用）
@@ -45,7 +49,11 @@
 
 ​	找了很久，感觉这个网站，分类比较符合我的预期（mac，windows，android），[字节智造](https://www.zsxcool.com)
 
+
+
 ![image-20221110021106185](https://ghproxy.com/https://raw.githubusercontent.com/Leeson0202/imgRepository/main/image-20221110021106185.png)
+
+
 
 优点：
 
@@ -62,6 +70,10 @@
 - macOS: [https://www.zsxcool.com/mac/page/2](https://www.zsxcool.com/mac/page/2)
 - windows: [https://www.zsxcool.com/windows/page/2](https://www.zsxcool.com/windows/page/2)
 - android: [https://www.zsxcool.com/android/page/2](https://www.zsxcool.com/android/page/2)
+
+
+
+
 
 
 
