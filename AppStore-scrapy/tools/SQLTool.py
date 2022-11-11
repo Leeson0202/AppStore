@@ -71,7 +71,7 @@ def commitToMySQL(filename):
         # 构建 link
         linkSql = ""
         for link in links:
-            linkSql = linkSqlFormat.format(f" ('{index}', '{link.get('name')}', '{link.get('link')}')")
+            linkSql = linkSqlFormat.format(f" ('{index}', '{link.get('name')}', '{link.get('url')}')")
             cursor.executeSql(linkSql)
         # 构建type
         typeSql = ""
