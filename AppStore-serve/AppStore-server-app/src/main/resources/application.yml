@@ -49,7 +49,7 @@ spring:
 # MyBatis
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
-  type-aliases-package: cn.as.appstore.entities
+  type-aliases-package: cn.as.appstore.entity
 
 # 打印sql语句
 logging:

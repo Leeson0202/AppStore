@@ -3,6 +3,8 @@ package cn.as.appstore.service.impl;
 import cn.as.appstore.entity.app.App;
 import cn.as.appstore.dao.AppDao;
 import cn.as.appstore.entity.app.AppCard;
+import cn.as.appstore.entity.app.Label;
+import cn.as.appstore.entity.app.Type;
 import cn.as.appstore.service.AppService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
@@ -85,5 +87,14 @@ public class AppServiceImpl implements AppService {
     @Override
     public List<AppCard> queryByTypeLabel(String type, String label, Integer page) {
         return appDao.queryByTypeLabel(type, label, page);
+    }
+
+    @Override
+    public List<Type> queryTypes() {
+        return appDao.queryTypes();
+    }
+    @Override
+    public List<Label> queryLabels() {
+        return appDao.queryLabels();
     }
 }

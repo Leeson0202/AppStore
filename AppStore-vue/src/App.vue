@@ -3,7 +3,7 @@
         <el-header>
             <HeaderVue></HeaderVue>
         </el-header>
-        <el-container>
+        <el-container class="main-container">
             <el-aside v-if="aside" width="200px">Aside</el-aside>
             <el-main>
                 <!--                <keep-alive>-->
@@ -27,9 +27,7 @@ export default {
             aside: false,
         }
     },
-    computed: {
-
-    }
+    computed: {}
 };
 </script>
 
@@ -60,6 +58,11 @@ export default {
     height: 100%;
 }
 
+.main-container {
+    height: calc(100% - 60px);
+    overflow: hidden;
+}
+
 .el-container:nth-child(5) .el-aside,
 .el-container:nth-child(6) .el-aside {
     line-height: 260px;
@@ -73,4 +76,6 @@ export default {
     padding-top: 0;
     padding-bottom: 0;
 }
+
+
 </style>

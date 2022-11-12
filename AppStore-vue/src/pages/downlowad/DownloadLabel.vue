@@ -3,22 +3,23 @@
 
         <ul>
             <span class="labelTag">
-                机型</span>
+                <i class="el-icon-menu" style="margin-right: 3px"/>机型</span>
             <li v-for="(name, key) in typeNames" :key="key"
                 :class="typeLiClass(key)"
                 @click="handelCheckerType(key)">{{ name }}
             </li>
         </ul>
 
-        <div v-show="this.changeTag"></div>
+
         <div style="height: 10px"></div>
         <ul>
-            <span class="labelTag">标签</span>
-            <li v-for="(item, key) in labelNames"
+            <span class="labelTag">
+                <i class="el-icon-collection-tag" style="margin-right: 3px"/>标签</span>
+            <li v-for="(name, key) in labelNames"
                 :class="labelLiClass(key)"
                 :key="key"
                 @click="handelClickedLabel(key)"
-            >{{ item }}
+            >{{ name }}
 
             </li>
         </ul>
@@ -37,136 +38,94 @@ export default {
     components: {},
     data() {
         //这里存放数据
-        return {
-            checkedType: '',
-            checkedLabel: [],
-            changeTag: false
-        };
+        return {};
     },
     //监听属性 类似于data概念
     computed: {
-        ...mapState('DownloadAbout', ['typeNames', "labelNames"]),
-
+        ...mapState('DownloadAbout',
+            ['typeNames', "labelNames",
+                'tag', 'type', 'label',
+                'page', 'allPage', 'cards']),
     },
     //监控data中的数据变化
-    watch: {
-    },
+    watch: {},
     //方法集合
     methods: {
+        ...mapActions('DownloadAbout', ['UpdateCards', 'UpdateByType', 'UpdateByLabel', 'UpdateByPage']),
+        ...mapMutations('DownloadAbout', ['SETType', 'SETLabel', 'SETPage']),
+
         // type 返回class类型
         typeLiClass(key) {
-            if (this.checkedType === key) {
-                return 'li-sure';
-            }
+            return this.type === key ? 'li-sure' : null;
         },
         // label 返回class类型
         labelLiClass(key) {
-            if (!this.checkedLabel) return
-            if (this.checkedLabel.indexOf(key) >= 0) {
-                return 'li-sure';
-
-            }
+            return this.label === key ? 'li-sure' : null;
         },
         // 点击 type 时
         handelCheckerType(val) {
-            this.checkedType = val;
-            // console.log(val)
+            console.log(val)
+            this.SETType(val);
             this.$router.push({
                 name: 'download',
                 query: {
-                    type: this.checkedType,
-                    label: this.checkedLabel,
+                    type: this.type,
+                    label: this.label,
+                    page: this.page,
                     t: Date.now()
                 }
             })
         },
         // 点击 label 时
-        handelClickedLabel(key) {
-            // 判断是否为空
-            if (!this.checkedLabel) this.checkedLabel = [];
-            if (key === 'all') {
-                if (this.checkedLabel.indexOf('all') >= 0) return
-                this.checkedLabel = [];
-                this.checkedLabel.push("all");
-            } else {
-                // 判断是否有all
-                if (this.checkedLabel.indexOf("all") >= 0) this.checkedLabel = [];
-                // 判断是否存在该key
-                let index = this.checkedLabel.indexOf(key)
-                if (index >= 0) { // 有 去掉
-                    this.checkedLabel.splice(index, 1);
-                } else { //没有 加入
-                    this.checkedLabel.push(key);
-                }
-            }
-            // 判断是否为全部
-            if (this.checkedLabel.length === Object.keys(this.labelNames).length - 1 || this.checkedLabel.length === 0) {
-                this.checkedLabel = [];
-                this.checkedLabel.push("all");
-            }
-
+        handelClickedLabel(val) {
+            this.SETLabel(val)
             this.$router.push({
-                name: "download",
-                "query": {
-                    type: this.checkedType,
-                    label: this.checkedLabel,
+                name: 'download',
+                query: {
+                    type: this.type,
+                    label: this.label,
+                    page: this.page,
                     t: Date.now()
                 }
-            });
-
+            })
         },
         // 更新函数
-        updateLabel() {
-            this.checkedLabel = ['all'];
-            this.checkedType = "all";
-            console.log("label", this.$route.query.label)
-            if (this.$route.query.label)
-                if (typeof this.$route.query.label === "string") {
-                    this.checkedLabel = [];
-                    this.checkedLabel.push(this.$route.query.label);
+        updateDownloadLabel() {
+            // 获取 query type
+            this.SETType(this.$route.query.type ? this.$route.query.type : "all");
+            // 获取 query label
+            this.SETLabel(this.$route.query.label ? this.$route.query.label : "all");
+            // 获取 query page
+            this.SETPage(this.$route.query.page ? this.$route.query.page : 0);
+            console.log(this.type, this.label, this.page)
+            // 更新card
+            this.UpdateCards();
 
-                } else {
-                    this.checkedLabel = this.$route.query.label;
-                }
-            if (this.$route.query.type)
-                this.checkedType = this.$route.query.type;
+
         }
 
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-        console.log("created")
-
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-        console.log("mounted")
-        this.updateLabel();
+        // 初始化的时候进行更新
+        this.updateDownloadLabel();
     },
     beforeCreate() {
-        console.log("beforeCreate")
     }, //生命周期 - 创建之前
     beforeMount() {
-        console.log("beforeMount")
-
     }, //生命周期 - 挂载之前
     beforeUpdate() {
-        console.log("beforeUpdate")
-        // this.updateLabel()
     }, //生命周期 - 更新之前
     updated() {
-        console.log("updated")
-
     }, //生命周期 - 更新之后
     beforeDestroy() {
-        console.log("beforeDestroy")
     }, //生命周期 - 销毁之前
     destroyed() {
-        console.log("destroyed")
-
     }, //生命周期 - 销毁完成
     activated() {
-        console.log("activated")
         // this.updateLabel();
     }, //如果页面有keep-alive缓存功能，这个函数会触发
 }
@@ -180,7 +139,7 @@ export default {
 
 .downloadLabel {
     background: #fff;
-    padding: 20px 0 20px 16px;
+    padding: 22px 0 16px 16px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 0px 10px 20px #ccc;
@@ -196,7 +155,7 @@ export default {
     align-items: center;
     line-height: 20px;
     background-color: #d4d6dd;
-    color: #929dab;
+    color: #777;
     /*禁止选中文字*/
     user-select: none;
 }

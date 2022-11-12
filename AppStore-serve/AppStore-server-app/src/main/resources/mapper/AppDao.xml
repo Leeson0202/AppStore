@@ -51,6 +51,22 @@
         ORDER BY app.view desc limit #{page}, 20
 
     </select>
+    <resultMap type="cn.as.appstore.entity.app.Type" id="TypeMap">
+        <result property="typeKey" column="type_key" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="queryTypes" resultMap="TypeMap">
+        select t.type_key, t.name
+        from type as t
+    </select>
+    <resultMap type="cn.as.appstore.entity.app.Label" id="LabelMap">
+        <result property="labelKey" column="label_key" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="queryLabels" resultMap="LabelMap">
+        select l.label_key, l.name
+        from label as l
+    </select>
 
     <!--查询单个-->
     <select id="queryById" resultMap="AppMap">

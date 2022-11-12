@@ -2,6 +2,8 @@ package cn.as.appstore.dao;
 
 import cn.as.appstore.entity.app.App;
 import cn.as.appstore.entity.app.AppCard;
+import cn.as.appstore.entity.app.Label;
+import cn.as.appstore.entity.app.Type;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
@@ -84,5 +86,9 @@ public interface AppDao {
      * @return list appCard对象
      */
     List<AppCard> queryByTypeLabel(@Param("type") String type, @Param("label") String label, @Param("page") Integer page);
+
+    List<Type> queryTypes();
+
+    List<Label> queryLabels();
 }
 

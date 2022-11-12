@@ -2,8 +2,9 @@
 import Vue from 'vue'
 //引入Vuex
 import Vuex from 'vuex'
-import DownloadAbout from './DownloadAbout'
-import SwrapperAbout from "@/store/SwrapperAbout";
+import DownloadAbout from './module/DownloadAbout'
+import CardAbout from "@/store/module/CardAbout";
+import SwrapperAbout from "@/store/module/SwrapperAbout";
 //应用Vuex插件
 Vue.use(Vuex)
 
@@ -12,6 +13,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     modules: {
         DownloadAbout,
+        CardAbout,
         SwrapperAbout
     }
 })

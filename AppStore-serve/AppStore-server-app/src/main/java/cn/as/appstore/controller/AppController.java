@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.awt.*;
 
 /**
  * (App)表控制层
@@ -24,6 +26,8 @@ public class AppController {
      */
     @Resource
     private AppService appService;
+    @Resource
+    private RestTemplate restTemplate;
 
 
     /**

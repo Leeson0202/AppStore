@@ -59,9 +59,9 @@ export default {
         return {
             activeIndex: 'home',
             navDic: {
+                // element 组件需要的 index
                 "navigation": "edit",
                 "download": "mac",
-
             },
             input: ""
         };
@@ -70,7 +70,7 @@ export default {
         ...mapState('DownloadAbout', ['typeNames', "labelNames"]),
     },
     methods: {
-        ...mapActions('DownloadAbout', ['GetTypes', "GetLabels"]),
+        ...mapActions('DownloadAbout', ['DownLoadInit']),
 
         // 更新header的 index
         selectItem() {
@@ -79,7 +79,7 @@ export default {
             if (this.$route.name === 'download')
                 index = this.$route.query.type ? this.$route.query.type : 'mac';
             else if (this.$route.name === 'navigation') {
-                index = this.$route.query.type ? this.$route.query.type : 'mac';
+                index = this.$route.query.type ? this.$route.query.type : 'edit';
             } else {
                 index = this.$route.name;
             }
@@ -87,35 +87,35 @@ export default {
         },
         // 处理header选择
         handleSelect(key, keyPath) {
-            // console.log(key, keyPath);
-            // console.log(this.$router.history.current.name);
             this.activeIndex = keyPath[keyPath.length - 1];
             // console.log("handleSelect: ", keyPath);
 
-            let type = undefined;
-            let labels = [];
+            let type = null;
+            let label = null;
+            let page = 0;
             // 如果是download
             if (keyPath[0] === 'download') {
-                // console.log(keyPath[keyPath.length-1]);
-                // console.log(Object.keys(this.typeNames))
                 if (Object.keys(this.typeNames).indexOf(keyPath[keyPath.length - 1]) >= 0) {
                     // 判断是否在type里面
                     type = keyPath[keyPath.length - 1];
-                    labels.push("all")
+                    label = "all"
                 } else if (Object.keys(this.labelNames).indexOf(keyPath[keyPath.length - 1]) >= 0) {
                     // 判断是否在label里面
-                    labels.push(keyPath[keyPath.length - 1]);
+                    label = keyPath[keyPath.length - 1];
                     type = "all"
                 }
             } else if (keyPath[0] === 'navigation') {
                 type = keyPath[keyPath.length - 1];
+            } else {
+                page = null;
             }
             // 进入相应页面
             this.$router.push({
                 name: keyPath[0],
                 query: {
                     "type": type,
-                    "label": labels,
+                    "label": label,
+                    'page': 0,
                     t: Date.now()
                 }
             })
@@ -133,12 +133,9 @@ export default {
         }
     },
     created() {
-        this.GetTypes("");
-        this.GetLabels("");
+        this.DownLoadInit();
     },
     updated() {
-        // console.log("update")
-        // this.selectItem();
     }
 
 }
