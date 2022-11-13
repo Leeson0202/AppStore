@@ -62,7 +62,8 @@ def commitToMySQL(filename):
         href = item.get('href')
         cursor.conn.begin()
         # 构建 applist
-        appSql = appSqlFormat.format(f"('{index}', '{icon}', '{name}', '{description}', '{article}', '{href}')")
+        appSql = appSqlFormat.format(
+            f"('{index}', '{icon}', '{name}', '{description}', '{article}', '{href}')")
         try:
             cursor.executeSql(appSql)
         except Exception as e:
@@ -71,7 +72,8 @@ def commitToMySQL(filename):
         # 构建 link
         linkSql = ""
         for link in links:
-            linkSql = linkSqlFormat.format(f" ('{index}', '{link.get('name')}', '{link.get('url')}')")
+            linkSql = linkSqlFormat.format(
+                f" ('{index}', '{link.get('name')}', '{link.get('url')}')")
             cursor.executeSql(linkSql)
         # 构建type
         typeSql = ""
@@ -87,6 +89,8 @@ def commitToMySQL(filename):
 
         print(f'{index}, {name}')
         cursor.conn.commit()
+    cursor.executeSql(
+        'insert into appLabel (label_key, app_id) select '', app.id from app where app.id not in (select lb.app_id from appLabel lb)')
     cursor.close()
 
 
