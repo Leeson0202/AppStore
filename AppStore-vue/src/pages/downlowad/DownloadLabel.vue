@@ -64,27 +64,24 @@ export default {
         },
         // 点击 type 时
         handelCheckerType(val) {
-            console.log(val)
-            this.SETType(val);
             this.$router.push({
                 name: 'download',
                 query: {
-                    type: this.type,
+                    type: val,
                     label: this.label,
-                    page: this.page,
+                    page: 1,
                     t: Date.now()
                 }
             })
         },
         // 点击 label 时
         handelClickedLabel(val) {
-            this.SETLabel(val)
             this.$router.push({
                 name: 'download',
                 query: {
                     type: this.type,
-                    label: this.label,
-                    page: this.page,
+                    label: val,
+                    page: 1,
                     t: Date.now()
                 }
             })
@@ -96,12 +93,10 @@ export default {
             // 获取 query label
             this.SETLabel(this.$route.query.label ? this.$route.query.label : "all");
             // 获取 query page
-            this.SETPage(this.$route.query.page ? this.$route.query.page : 0);
+            this.SETPage(this.$route.query.page ? parseInt(this.$route.query.page) : 0);
             console.log(this.type, this.label, this.page)
             // 更新card
             this.UpdateCards();
-
-
         }
 
     },

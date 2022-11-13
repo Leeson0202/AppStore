@@ -1,10 +1,18 @@
 <template>
     <div class='downloadCard' @click="handleClicked">
-        <div class="card-inner">
-            <img :src="cardImg" alt="图片加载失败">
-        </div>
-        <div class="descriptions card-inner">{{ this.card.name }}</div>
+        <div style="margin: 16px 10px 16px 10px;height: calc(100% - 32px)">
+            <div class="card-inner card-img">
+                <img :src="cardImg" alt="图片加载失败">
+            </div>
+            <div class="descriptions card-inner">
+                <div class="card-title">
+                    {{ this.card.name }}
+                </div>
+                <div class="views"><i class="el-icon-position"/> {{ this.card.view }}</div>
+                <div class="description">{{ this.card.description }}</div>
 
+            </div>
+        </div>
     </div>
 </template>
 
@@ -59,29 +67,70 @@ export default {
 </script>
 <style scoped>
 .downloadCard {
-    float: left;
-    margin: 20px 0 0 0;
+    margin: auto;
     padding: 0;
-    width: calc(50% - 10px);
-    height: 134px;
-    background: aliceblue;
+    height: 140px;
+    /*background: aliceblue;*/
     cursor: pointer;
 }
 
-/*奇数选择器*/
-.downloadCard:nth-child(odd) {
-    margin: 20px 10px 0 0;
+/*!*奇数选择器*!*/
+/*.downloadCard:nth-child(odd) {*/
+/*    margin: 35px 10px 0 0;*/
+/*}*/
+
+@media screen and (max-width: 1080px) {
+
+
 }
 
-.card-inner {
+
+.card-img {
     float: left;
+    height: 100%;
+    margin-left: 20px;
+
 }
+
 
 img {
-    height: 134px;
-    width: 150px;
+    height: 100%;
     border-radius: 16px;
+    box-shadow: 5px 5px 15px #aaa;
 }
+
+.descriptions {
+    margin: 10px 0 10px 0;
+    float: right;
+    width: calc(100% - 190px);
+    height: 100%;
+
+
+}
+
+.card-title {
+
+    height: 1.5em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #666;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.views {
+    margin: 5px 0 0 0;
+    color: red;
+}
+
+.description {
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #aaaaaa;
+}
+
 
 </style>
 

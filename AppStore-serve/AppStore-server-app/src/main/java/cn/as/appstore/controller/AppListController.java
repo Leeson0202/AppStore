@@ -39,14 +39,36 @@ public class AppListController {
      * @return 查询结果
      */
     @GetMapping("/applist")
-    public ResponseEntity<List<AppCard>> queryCard(
+    public ResponseEntity<Map<String, Object>> queryCard(
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String label,
-            @RequestParam(required = false, defaultValue = "0") Integer page) {
-        return ResponseEntity.ok(this.appService.queryByTypeLabel(type, label, page));
+            @RequestParam(required = false, defaultValue = "1") Integer page) {
+        HashMap<String, Object> res = new HashMap<>();
+        res.put("cards", this.appService.queryByTypeLabel(type, label, page));
+        res.put("total", this.appService.queryCardTotal(type, label));
+        return ResponseEntity.ok(res);
     }
 
+    /**
+     * 获取cards total
+     */
+    @GetMapping("/getTotal")
+    public ResponseEntity<Map<String, Object>> queryCardTotal(
+            @RequestParam(required = false) String type,
+            @RequestParam(required = false) String label) {
+        HashMap<String, Object> res = new HashMap<>();
+        res.put("total", appService.queryCardTotal(type, label));
+        return ResponseEntity.ok(res);
+    }
+
+
+    /**
+     * 获取 download types
+     *
+     * @return Map<key, value>
+     */
     @GetMapping("/types")
+
     public ResponseEntity<Map<String, String>> queryTypes() {
         List<Type> types = appService.queryTypes();
         Map<String, String> res = new HashMap<>();
@@ -57,6 +79,11 @@ public class AppListController {
         return ResponseEntity.ok(res);
     }
 
+    /**
+     * 获取 download types
+     *
+     * @return Map<key, value>
+     */
     @GetMapping("/labels")
     public ResponseEntity<Map<String, String>> queryLabels() {
         List<Label> labels = appService.queryLabels();

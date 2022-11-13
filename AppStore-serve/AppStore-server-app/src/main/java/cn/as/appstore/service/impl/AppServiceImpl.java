@@ -86,6 +86,9 @@ public class AppServiceImpl implements AppService {
      */
     @Override
     public List<AppCard> queryByTypeLabel(String type, String label, Integer page) {
+        type = StringUtils.isEmpty(type) ? null : type;
+        label = StringUtils.isEmpty(label) ? null : label;
+        page = 20 * (page - 1);
         return appDao.queryByTypeLabel(type, label, page);
     }
 
@@ -93,8 +96,14 @@ public class AppServiceImpl implements AppService {
     public List<Type> queryTypes() {
         return appDao.queryTypes();
     }
+
     @Override
     public List<Label> queryLabels() {
         return appDao.queryLabels();
+    }
+
+    @Override
+    public Integer queryCardTotal(String type, String label) {
+        return appDao.queryCardTotal(type, label);
     }
 }

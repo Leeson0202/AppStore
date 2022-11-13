@@ -2,14 +2,14 @@
     <el-menu :default-active="activeIndex" ref="elMenu" class="el-menu-demo"
              mode="horizontal" @select="handleSelect">
 
-        <span v-on:click="handleSelect('home',['home'])">Coder's AppStore</span>
+        <span class="title" v-on:click="handleSelect('home',['home'])">Coder's AppStore</span>
 
         <el-menu-item index="center">
             个人中心
         </el-menu-item>
 
         <el-menu-item index="publish">
-            我的发布
+            发布
         </el-menu-item>
 
 
@@ -40,7 +40,7 @@
         </el-submenu>
 
         <el-menu-item index="home">首页</el-menu-item>
-        <el-menu-item>
+        <el-menu-item index="search">
             <el-input class="search-input" v-model="input" placeholder="搜索"></el-input>
             <i class="el-icon-search search-image"></i>
         </el-menu-item>
@@ -92,9 +92,10 @@ export default {
 
             let type = null;
             let label = null;
-            let page = 0;
+            let page = null;
             // 如果是download
             if (keyPath[0] === 'download') {
+                page = 1
                 if (Object.keys(this.typeNames).indexOf(keyPath[keyPath.length - 1]) >= 0) {
                     // 判断是否在type里面
                     type = keyPath[keyPath.length - 1];
@@ -106,6 +107,8 @@ export default {
                 }
             } else if (keyPath[0] === 'navigation') {
                 type = keyPath[keyPath.length - 1];
+            } else if (keyPath[0] === 'search') {
+                return;
             } else {
                 page = null;
             }
@@ -115,7 +118,7 @@ export default {
                 query: {
                     "type": type,
                     "label": label,
-                    'page': 0,
+                    'page': page,
                     t: Date.now()
                 }
             })
@@ -168,7 +171,7 @@ export default {
     display: block;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 850px) {
     /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
     .search-image {
         display: inline;
@@ -178,6 +181,7 @@ export default {
         display: none;
     }
 }
+
 
 
 </style>

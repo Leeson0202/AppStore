@@ -1,9 +1,21 @@
 <template>
     <div class='downloadTable'>
-        <DownloadCard v-for="card in this.cards"
-                      :key="card.name"
-                      :card="card"
-        />
+        <div class="downloadTList">
+            <DownloadCard class="DownloadCard" v-for="card in this.cards"
+                          :key="card.name"
+                          :card="card"
+            />
+        </div>
+        <div style="height: 20px;"></div>
+        <el-pagination
+            background
+            :page-size="20"
+            layout="total, prev, pager, next"
+            :current-page="this.page"
+            :total="total"
+            @current-change="handleChangePage"
+        >
+        </el-pagination>
     </div>
 </template>
 
@@ -22,13 +34,27 @@ export default {
     },
     //监听属性 类似于data概念
     computed: {
-        ...mapState('DownloadAbout', ['tag', "cards"]),
+        ...mapState('DownloadAbout', ['tag', 'type', 'label', "cards", "page", "total"]),
     },
     //监控data中的数据变化
     watch: {},
     //方法集合
     methods: {
         ...mapActions('DownloadAbout', ['GetCards']),
+        ...mapMutations('DownloadAbout', ['SETPage']),
+        handleChangePage(page) {
+            this.$router.push({
+                name: 'download',
+                query: {
+                    type: this.type,
+                    label: this.label,
+                    page: page,
+                    t: Date.now()
+
+                }
+            })
+
+        }
 
     },
     //生命周期 - 创建完成（可以访问当前this实例）
@@ -56,6 +82,36 @@ export default {
 <style scoped>
 .downloadTable {
     margin: 10px 0 0 0;
+}
+
+.downloadTList {
+    margin: 0;
+    padding: 0 0 20px 0;
+    width: 100%;
+    overflow: hidden;
+
+}
+
+.DownloadCard {
+    width: calc(33.3%);
+    float: left;
+}
+
+@media screen and (max-width: 1440px) {
+    .DownloadCard {
+        width: calc(50%);
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .DownloadCard {
+        width: calc(100%);
+    }
+}
+
+.el-pagination {
+    margin: 10px 0 10px 0;
+    text-align: center;
 }
 
 </style>

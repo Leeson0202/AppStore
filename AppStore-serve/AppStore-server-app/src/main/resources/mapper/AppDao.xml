@@ -22,25 +22,51 @@
     <!--查询appCard by Type Label page-->
     <select id="queryByTypeLabel" resultMap="AppCardMap">
         select
-        `id`,
-        `icon`,
-        `name`,
-        `description`,
-        `view`
-        from app
+        a.id,
+        a.icon,
+        a.name,
+        a.description,
+        a.view
+        from app a
+        <where>
+            <if test="type != null">
+                a.id in
+                (select tp.app_id
+                from appType as tp
+                <where>
+
+                    and tp.type_key = #{type}
+                </where>
+                )
+            </if>
+
+            <if test="label != null">
+                and a.id in
+                (select lb.app_id
+                from appLabel as lb
+                <where>
+                    and lb.label_key = #{label}
+                </where>
+                )
+            </if>
+        </where>
+        ORDER BY a.view desc limit #{page}, 20
+
+    </select>
+
+    <!-- queryCardTotal 查询所有数量 by type label  -->
+    <select id="queryCardTotal" resultType="integer">
+        select count(1) from app
         <where>
             app.id in
-            (select tp.app_id
-            from appType as tp
+            (select tp.app_id from appType tp
             <where>
                 <if test="type != null">
                     and tp.type_key = #{type}
                 </if>
             </where>
-            )
-            and app.id in
-            (select lb.app_id
-            from appLabel as lb
+            ) and app.id in
+            (select lb.app_id from appLabel lb
             <where>
                 <if test="label != null">
                     and lb.label_key = #{label}
@@ -48,9 +74,9 @@
             </where>
             )
         </where>
-        ORDER BY app.view desc limit #{page}, 20
-
     </select>
+
+    <!-- queryTypes 查询Types  -->
     <resultMap type="cn.as.appstore.entity.app.Type" id="TypeMap">
         <result property="typeKey" column="type_key" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
@@ -59,6 +85,7 @@
         select t.type_key, t.name
         from type as t
     </select>
+    <!-- queryLabels 查询Labels -->
     <resultMap type="cn.as.appstore.entity.app.Label" id="LabelMap">
         <result property="labelKey" column="label_key" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>

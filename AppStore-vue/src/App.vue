@@ -1,5 +1,5 @@
 <template>
-    <el-container>
+    <el-container id="app-body">
         <el-header>
             <HeaderVue></HeaderVue>
         </el-header>
@@ -8,7 +8,7 @@
             <el-main>
                 <!--                <keep-alive>-->
                 <router-view :key="$route.path + $route.query.t"></router-view>
-                <!--                </keep-alive>-->
+                <Footer></Footer>
             </el-main>
         </el-container>
     </el-container>
@@ -16,11 +16,14 @@
 
 <script>
 import HeaderVue from "./components/Header.vue";
+import Footer from "@/components/Footer";
 
 export default {
     name: "App",
     components: {
         HeaderVue,
+        Footer,
+
     },
     data() {
         return {
@@ -31,13 +34,25 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+
+
+.el-container {
+    height: 100%;
+    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
+}
+
 .el-header {
     background-color: #fff;
     color: #333;
     text-align: center;
     line-height: 60px;
     /*border-bottom: 0.5px solid rgb(199, 193, 193);*/
+}
+
+.main-container {
+    height: calc(100% - 60px);
+    overflow: hidden;
 }
 
 .el-aside {
@@ -51,30 +66,25 @@ export default {
     background-color: #fff;
     color: #333;
     text-align: left;
-    line-height: normal;
-}
-
-.el-container {
-    height: 100%;
-}
-
-.main-container {
-    height: calc(100% - 60px);
-    overflow: hidden;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-}
-
-.el-main {
     padding-top: 0;
     padding-bottom: 0;
+    min-height: calc(100% - 60px);
+}
+
+
+.el-main::-webkit-scrollbar {
+    display: none; /* Chrome Safari */
+}
+
+#app-body {
+    margin: auto;
+    width: 80%;
+}
+
+@media screen and (max-width: 1080px) {
+    #app-body {
+        width: 100%;
+    }
 }
 
 

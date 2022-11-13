@@ -91,3 +91,11 @@ values ('program', '编程'),
 
 
 
+# insert into appLabel (label_key, app_id)
+# select '', app.id
+# from app
+# where app.id not in
+#       (select lb.app_id from appLabel lb)
+
+
+

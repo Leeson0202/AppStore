@@ -90,5 +90,8 @@ public interface AppDao {
     List<Type> queryTypes();
 
     List<Label> queryLabels();
+
+    Integer queryCardTotal(@Param("type") String type,@Param("label")  String label);
+
 }
 

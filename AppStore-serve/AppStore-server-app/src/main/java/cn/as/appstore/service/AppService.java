@@ -63,4 +63,6 @@ public interface AppService {
     List<Type> queryTypes();
 
     public List<Label> queryLabels();
+
+    Integer queryCardTotal(String type, String label);
 }

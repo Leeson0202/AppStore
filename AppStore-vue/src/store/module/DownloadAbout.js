@@ -17,6 +17,7 @@ export default {
         label: "all",
         // 默认 第一页开始
         page: 0,
+        total: 10,
         allPage: 10,
         // 返回的数据
         cards: []
@@ -72,10 +73,12 @@ export default {
             }).then(
                 res => {
                     console.log(res.data);
-                    context.commit("SETCards", res.data);
+                    context.commit("SETTotal", res.data.total);
+
+                    context.commit("SETCards", res.data.cards);
                 },
                 error => {
-                    console.log(error)
+                    // console.log(error)
                 }
             )
         },
@@ -109,6 +112,9 @@ export default {
         SETCards(state, res) {
             state.tag = true;
             state.cards = res;
+        },
+        SETTotal(state, res) {
+            state.total = res;
         },
         // 设置 type
         SETType(state, type) {
