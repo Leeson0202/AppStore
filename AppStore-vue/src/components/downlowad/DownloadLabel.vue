@@ -42,17 +42,15 @@ export default {
     },
     //监听属性 类似于data概念
     computed: {
-        ...mapState('DownloadAbout',
-            ['typeNames', "labelNames",
-                'tag', 'type', 'label',
-                'page', 'allPage', 'cards']),
+        ...mapState('DownloadAbout', ['typeNames', "labelNames",]),
+        ...mapState('DownloadCardsAbout', ['tag', 'type', 'label', 'page', 'allPage', 'cards'])
     },
     //监控data中的数据变化
     watch: {},
     //方法集合
     methods: {
-        ...mapActions('DownloadAbout', ['UpdateCards', 'UpdateByType', 'UpdateByLabel', 'UpdateByPage']),
-        ...mapMutations('DownloadAbout', ['SETType', 'SETLabel', 'SETPage']),
+        ...mapActions('DownloadCardsAbout', ['UpdateCards', 'UpdateByPage']),
+        ...mapMutations('DownloadCardsAbout', ['SETType', 'SETLabel', 'SETPage']),
 
         // type 返回class类型
         typeLiClass(key) {
@@ -94,7 +92,7 @@ export default {
             this.SETLabel(this.$route.query.label ? this.$route.query.label : "all");
             // 获取 query page
             this.SETPage(this.$route.query.page ? parseInt(this.$route.query.page) : 0);
-            console.log(this.type, this.label, this.page)
+            // console.log(this.type, this.label, this.page)
             // 更新card
             this.UpdateCards();
         }

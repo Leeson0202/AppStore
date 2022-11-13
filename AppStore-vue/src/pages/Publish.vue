@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import PublishEditor from "@/pages/markdown/PublishEditor";
+import PublishEditor from "@/components/markdown/PublishEditor";
 
 export default {
     name: "Publish",

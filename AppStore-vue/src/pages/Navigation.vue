@@ -1,12 +1,7 @@
 <template>
-    <div class='footer-context'>
-        <el-divider style="margin-top: 10px;"></el-divider>
-        <span>Copyright &nbsp;|&nbsp; ©2022&nbsp;<a href="/">AppStore</a> &nbsp;All Rights Reserved</span>
-        <div style="height: 0.5em"></div>
-        <span class="info">
-        <i class="el-icon-warning-outline"/>
-        本站信息来自网络，版权争议与本站无关
-        </span>
+    <div>
+        <NavigationWrapper></NavigationWrapper>
+        <Swrapper></Swrapper>
     </div>
 </template>
 
@@ -14,9 +9,12 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from ‘《组件路径》‘;
 
+import NavigationWrapper from "@/components/navigation/NavigationWrapper";
+import Swrapper from "@/components/swrapper/Swrapper";
+
 export default {
-    name: "Footer",
-    components: {},
+    name: "Navigation",
+    components: {NavigationWrapper, Swrapper},
     data() {
         //这里存放数据
         return {};
@@ -52,22 +50,7 @@ export default {
 }
 </script>
 <style scoped>
-.footer-context {
-    padding: 0 0 30px 0;
-    margin: 0;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
-    font-size: small;
-    font-weight: 200;
-    color: #000;
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-}
 
-.info {
-    font-weight: lighter;
-}
 </style>
 
 

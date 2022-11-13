@@ -4,12 +4,6 @@ import axios from 'axios'
 export default {
     namespaced: true,//开启命名空间
     state: {
-        // 机型 type
-        typeNames: {},
-
-        // 分类 label
-        labelNames: {},
-
         tag: false,
         // 选中的type
         type: "all",
@@ -24,43 +18,6 @@ export default {
 
     },
     actions: {
-        // Download 初始化获取所有标签
-        DownLoadInit(context) {
-            context.dispatch("GetTypes");
-            context.dispatch("GetLabels");
-        },
-
-        // 初始化 获取 typeNames
-        GetTypes(context, keyword) {
-            let typesNames = null;
-            axios.get("/app/types").then(
-                res => {
-                    typesNames = res.data;
-                },
-                error => {
-                    console.log(error);
-                }
-            ).then(function () {     // 总会执行
-                // console.log('GetTypes is committing');
-                context.commit('SETTypeNames', typesNames);
-
-            })
-        },
-        // 初始化 获取labeLnames
-        GetLabels(context, keyword) {
-            let labelNames = null;
-            axios.get("/app/labels").then(
-                res => {
-                    labelNames = res.data
-                },
-                error => {
-                    console.log(error);
-                }
-            ).then(function () {     // 总会执行
-                context.commit('SETLabelNames', labelNames);
-            })
-        },
-
         // 更新 cards
         UpdateCards(context) {
             context.state.tag = false;
@@ -74,10 +31,10 @@ export default {
                 res => {
                     console.log(res.data);
                     context.commit("SETTotal", res.data.total);
-
                     context.commit("SETCards", res.data.cards);
                 },
                 error => {
+                    // 数据获取失败
                     // console.log(error)
                 }
             )
@@ -99,17 +56,9 @@ export default {
         },
     },
     mutations: {
-        // type 类型
-        SETTypeNames(state, typeNames) {
-            state.typeNames = typeNames;
-        },
-        // label 分类
-        SETLabelNames(state, labelNames) {
-            state.labelNames = labelNames;
-        },
-
         // cards
         SETCards(state, res) {
+            if (res === null || res === undefined) return
             state.tag = true;
             state.cards = res;
         },

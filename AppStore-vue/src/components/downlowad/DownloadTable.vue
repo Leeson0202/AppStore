@@ -1,12 +1,13 @@
 <template>
     <div class='downloadTable'>
-        <div class="downloadTList">
+        <IsLoading :tag="!this.tag"></IsLoading>
+        <div v-if="tag" class="downloadTList">
             <DownloadCard class="DownloadCard" v-for="card in this.cards"
-                          :key="card.name"
+                          :key="card.id"
                           :card="card"
+                          :handelClicked="handleChangeItem"
             />
         </div>
-        <div style="height: 20px;"></div>
         <el-pagination
             background
             :page-size="20"
@@ -23,25 +24,36 @@
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from ‘《组件路径》‘;
 import {mapActions, mapMutations, mapState} from 'vuex'
-import DownloadCard from "@/pages/downlowad/DownloadCard";
+import DownloadCard from "@/components/downlowad/DownloadCard";
+import Loading from "@/components/others/Loading";
 
 export default {
     name: "DownloadTable",
-    components: {DownloadCard},
+    components: {DownloadCard, IsLoading: Loading},
     data() {
         //这里存放数据
         return {};
     },
     //监听属性 类似于data概念
     computed: {
-        ...mapState('DownloadAbout', ['tag', 'type', 'label', "cards", "page", "total"]),
+        ...mapState('DownloadCardsAbout', ['tag', 'type', 'label', "cards", "page", "total"]),
     },
     //监控data中的数据变化
     watch: {},
     //方法集合
     methods: {
-        ...mapActions('DownloadAbout', ['GetCards']),
-        ...mapMutations('DownloadAbout', ['SETPage']),
+        ...mapActions('DownloadCardsAbout', ['GetCards']),
+        ...mapMutations('DownloadCardsAbout', ['SETPage']),
+        handleChangeItem(id) {
+            console.log("click", id)
+            this.$router.push({
+                name: 'app',
+                query: {
+                    id: id,
+                    t: Date.now()
+                }
+            })
+        },
         handleChangePage(page) {
             this.$router.push({
                 name: 'download',
@@ -50,12 +62,9 @@ export default {
                     label: this.label,
                     page: page,
                     t: Date.now()
-
                 }
             })
-
         }
-
     },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
@@ -82,7 +91,10 @@ export default {
 <style scoped>
 .downloadTable {
     margin: 10px 0 0 0;
+    width: 100%;
+    height: calc(100% - 120px);
 }
+
 
 .downloadTList {
     margin: 0;
@@ -113,6 +125,7 @@ export default {
     margin: 10px 0 10px 0;
     text-align: center;
 }
+
 
 </style>
 

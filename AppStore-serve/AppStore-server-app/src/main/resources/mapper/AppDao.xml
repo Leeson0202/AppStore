@@ -11,6 +11,18 @@
         <result property="view" column="view" jdbcType="INTEGER"/>
         <result property="date" column="date" jdbcType="TIMESTAMP"/>
         <result property="href" column="href" jdbcType="VARCHAR"/>
+        <collection property="types" ofType="String">
+            <result column="type_key" jdbcType="VARCHAR" property="typeKey"/>
+        </collection>
+        <collection property="labels" ofType="String">
+            <result column="label_key" jdbcType="VARCHAR" property="labelKey"/>
+        </collection>
+        <collection property="links" ofType="cn.as.appstore.entity.app.Link">
+            <result column="name" jdbcType="VARCHAR" property="name"/>
+            <result column="version" jdbcType="VARCHAR" property="version"/>
+            <result column="link" jdbcType="VARCHAR" property="link"/>
+            <result column="date" jdbcType="DATE" property="date"/>
+        </collection>
     </resultMap>
     <resultMap type="cn.as.appstore.entity.app.AppCard" id="AppCardMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
@@ -85,6 +97,7 @@
         select t.type_key, t.name
         from type as t
     </select>
+
     <!-- queryLabels 查询Labels -->
     <resultMap type="cn.as.appstore.entity.app.Label" id="LabelMap">
         <result property="labelKey" column="label_key" jdbcType="VARCHAR"/>
@@ -97,16 +110,25 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="AppMap">
-        select id,
-               icon,
-               name,
-               description,
-               article,
-               view,
-               date,
-               href
-        from app
-        where id = #{id}
+        select a.id,
+               a.icon,
+               a.name,
+               a.description,
+               a.article,
+               a.view,
+               a.date,
+               a.href,
+               tp.type_key,
+               lb.label_key,
+               lk.name,
+               lk.version,
+               lk.link,
+               lk.date
+        from app a
+                 LEFT JOIN appType tp on tp.app_id = a.id
+                 LEFT JOIN appLabel lb on lb.app_id = a.id
+                 LEFT JOIN appLink lk on lk.id = a.id
+        where a.id = #{id}
     </select>
 
     <!--查询指定行数据-->

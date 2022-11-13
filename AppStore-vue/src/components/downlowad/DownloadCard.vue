@@ -1,5 +1,5 @@
 <template>
-    <div class='downloadCard' @click="handleClicked">
+    <div class='downloadCard' @click="handelClicked(card.id)">
         <div style="margin: 16px 10px 16px 10px;height: calc(100% - 32px)">
             <div class="card-inner card-img">
                 <img :src="cardImg" alt="图片加载失败">
@@ -25,7 +25,7 @@ import axios from "axios";
 export default {
     name: "DownloadCard",
     components: {},
-    props: ['card'],
+    props: ['card','handelClicked'],
     data() {
         //这里存放数据
         return {
@@ -37,11 +37,7 @@ export default {
     //监控data中的数据变化
     watch: {},
     //方法集合
-    methods: {
-        handleClicked() {
-            console.log("handleClicked..")
-        },
-    },
+    methods: {},
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
 
@@ -121,7 +117,8 @@ img {
 
 .views {
     margin: 5px 0 0 0;
-    color: red;
+    color: #ee6969;
+    font-size: 0.8em;
 }
 
 .description {

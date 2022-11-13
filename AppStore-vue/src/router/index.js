@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '../components/Home.vue'
-import Publish from '../components/Publish.vue'
-import Download from "@/components/Download";
-import Center from "@/components/Center";
-import Navigation from "@/components/Navigation";
+import Home from '../pages/Home.vue'
+import Publish from '../pages/Publish.vue'
+import Download from "@/pages/Download";
+import DownloadItem from "@/components/downlowad/DownloadItem";
+import Center from "@/pages/Center";
+import Navigation from "@/pages/Navigation";
 
 
 Vue.use(Router)
@@ -20,12 +21,15 @@ export default new Router({
     }, {
         name: 'publish', path: "/publish", component: Publish
     }, {
-        name: 'download', path: "/download", component: Download
-    },{
+        name: 'download', path: "/download", component: Download,
+
+    }, {
         name: 'center', path: "/center", component: Center
-    },{
+    }, {
         name: 'navigation', path: "/navigation", component: Navigation
-    },
+    }, {
+        name: 'app', path: "/app", component: DownloadItem,
+    }
 
     ]
 })

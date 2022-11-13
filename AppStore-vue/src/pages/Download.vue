@@ -8,8 +8,8 @@
 
 <script>
 import {mapActions, mapMutations, mapState} from 'vuex'
-import DownloadTable from "@/pages/downlowad/DownloadTable";
-import DownloadLabel from "@/pages/downlowad/DownloadLabel";
+import DownloadTable from "@/components/downlowad/DownloadTable";
+import DownloadLabel from "@/components/downlowad/DownloadLabel";
 
 export default {
     name: "Download",

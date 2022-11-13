@@ -6,7 +6,6 @@
         <el-container class="main-container">
             <el-aside v-if="aside" width="200px">Aside</el-aside>
             <el-main>
-                <!--                <keep-alive>-->
                 <router-view :key="$route.path + $route.query.t"></router-view>
                 <Footer></Footer>
             </el-main>
@@ -15,8 +14,8 @@
 </template>
 
 <script>
-import HeaderVue from "./components/Header.vue";
-import Footer from "@/components/Footer";
+import HeaderVue from "./pages/Header.vue";
+import Footer from "@/pages/Footer";
 
 export default {
     name: "App",

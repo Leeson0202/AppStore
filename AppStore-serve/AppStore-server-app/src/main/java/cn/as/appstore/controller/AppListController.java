@@ -1,5 +1,6 @@
 package cn.as.appstore.controller;
 
+import cn.as.appstore.entity.app.App;
 import cn.as.appstore.entity.app.AppCard;
 import cn.as.appstore.entity.app.Label;
 import cn.as.appstore.entity.app.Type;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.validation.constraints.NotNull;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,8 +33,11 @@ public class AppListController {
     @Resource
     private RedisTemplate redisTemplate;
 
+
+
+
     /**
-     * 分页查询 通过type
+     * 通过type 分页查询 cards和总数量total
      *
      * @param type  机型
      * @param label 分类
@@ -50,7 +55,7 @@ public class AppListController {
     }
 
     /**
-     * 获取cards total
+     * 通过 type和label 获取 总数量total
      */
     @GetMapping("/getTotal")
     public ResponseEntity<Map<String, Object>> queryCardTotal(
