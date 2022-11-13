@@ -36,9 +36,13 @@ public class AppController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("app/{id}")
-    public ResponseEntity<App> queryById(@PathVariable("id") Integer id) {
+    @GetMapping("app")
+    public ResponseEntity<App> queryById(Integer id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(this.appService.queryById(id));
+
     }
 
     /**
