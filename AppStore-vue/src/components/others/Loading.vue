@@ -16,7 +16,7 @@ export default {
         //这里存放数据
         return {
             showStyle: {
-                display: 'block'
+                display: 'none'
             }
         };
     },
@@ -27,23 +27,21 @@ export default {
     //监控data中的数据变化
     watch: {
         tag(val, old) {
-            console.log('loading: ', old, val)
             if (val) {
                 this.showStyle.display = 'block'
             } else {
                 this.showStyle.display = 'none'
             }
+
         }
     },
     //方法集合
     methods: {},
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
-
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
-        console.log("lodaing init:", this.tag)
     },
     beforeCreate() {
     }, //生命周期 - 创建之前

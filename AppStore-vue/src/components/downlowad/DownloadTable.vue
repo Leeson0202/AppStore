@@ -90,7 +90,7 @@ export default {
 </script>
 <style scoped>
 .downloadTable {
-    margin: 10px 0 0 0;
+    margin: 20px 0 0 0;
     width: 100%;
     height: calc(100% - 120px);
 }
@@ -110,7 +110,7 @@ export default {
     transition-duration: 0.3s;
 }
 
-@media screen and (max-width: 1240px) {
+@media screen and (max-width: 1400px) {
     .DownloadCard {
         width: calc(50%);
         transition-duration: 0.3s;

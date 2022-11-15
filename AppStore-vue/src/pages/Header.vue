@@ -178,7 +178,7 @@ export default {
 
 }
 
-@media screen and (max-width: 810px) {
+@media screen and (max-width: 860px) {
     /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
     .search-image {
         display: inline;
@@ -190,12 +190,11 @@ export default {
 
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 900px) {
     .el-menu-demo > span {
         margin-left: 0;
         transition-duration: 1s;
     }
 }
-
 
 </style>

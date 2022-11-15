@@ -118,7 +118,7 @@ img {
     overflow: hidden;
     text-overflow: ellipsis;
     color: #666;
-    font-weight: 400;
+    font-weight: 500;
     font-size: 1em;
 }
 
