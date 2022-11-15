@@ -105,19 +105,22 @@ export default {
 }
 
 .DownloadCard {
-    width: calc(33.3%);
+    width: calc(100% / 3);
     float: left;
+    transition-duration: 0.3s;
 }
 
-@media screen and (max-width: 1440px) {
+@media screen and (max-width: 1240px) {
     .DownloadCard {
         width: calc(50%);
+        transition-duration: 0.3s;
     }
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 650px) {
     .DownloadCard {
         width: calc(100%);
+        transition-duration: 0.3s;
     }
 }
 

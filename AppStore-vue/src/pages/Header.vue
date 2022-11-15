@@ -2,7 +2,7 @@
     <el-menu :default-active="activeIndex" ref="elMenu" class="el-menu-demo"
              mode="horizontal" @select="handleSelect">
 
-        <span class="title" v-on:click="handleSelect('home',['home'])">Coder's AppStore</span>
+        <span class="title" v-on:click="handleSelect('home',['home'])">AppStore</span>
 
         <el-menu-item index="center">
             个人中心
@@ -145,6 +145,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 .el-menu-demo > li, .el-menu-demo > el-input {
     float: right;
 }
@@ -155,8 +157,11 @@ export default {
 
 .el-menu-demo > span {
     float: left;
-    font-size: large;
     font-weight: bold;
+    font-size: x-large;
+    margin-left: 40px;
+    transition-duration: 1s;
+
 }
 
 .el-menu-item, template, span {
@@ -165,13 +170,15 @@ export default {
 
 .search-image {
     display: none;
+
 }
 
 .search-input {
     display: block;
+
 }
 
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 810px) {
     /*当屏幕尺寸小于600px时，应用下面的CSS样式*/
     .search-image {
         display: inline;
@@ -180,8 +187,15 @@ export default {
     .search-input {
         display: none;
     }
+
 }
 
+@media screen and (max-width: 850px) {
+    .el-menu-demo > span {
+        margin-left: 0;
+        transition-duration: 1s;
+    }
+}
 
 
 </style>

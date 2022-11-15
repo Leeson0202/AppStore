@@ -78,11 +78,14 @@ export default {
 #app-body {
     margin: auto;
     width: 80%;
+    transition-duration: 1s;
 }
 
-@media screen and (max-width: 1080px) {
+@media screen and (max-width: 1060px) {
     #app-body {
         width: 100%;
+        transition-duration: 1s;
+
     }
 }
 

@@ -27,7 +27,7 @@ export default {
     //监控data中的数据变化
     watch: {
         tag(val, old) {
-            console.log('loading: ', val)
+            console.log('loading: ', old, val)
             if (val) {
                 this.showStyle.display = 'block'
             } else {

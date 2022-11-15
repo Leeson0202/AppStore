@@ -25,7 +25,7 @@ import axios from "axios";
 export default {
     name: "DownloadCard",
     components: {},
-    props: ['card','handelClicked'],
+    props: ['card', 'handelClicked'],
     data() {
         //这里存放数据
         return {
@@ -68,6 +68,13 @@ export default {
     height: 140px;
     /*background: aliceblue;*/
     cursor: pointer;
+}
+
+.downloadCard:hover {
+    background-color: #eee;
+    border-radius: 16px;
+    transition-duration: 0.4s;
+
 }
 
 /*!*奇数选择器*!*/
