@@ -81,7 +81,16 @@ export default {
     transition-duration: 1s;
 }
 
-@media screen and (max-width: 1060px) {
+@media screen and (max-width: 1200px) {
+    #app-body {
+        width: 90%;
+        transition-duration: 1s;
+
+    }
+}
+
+
+@media screen and (max-width: 1100px) {
     #app-body {
         width: 100%;
         transition-duration: 1s;

@@ -90,7 +90,7 @@ def commitToMySQL(filename):
         print(f'{index}, {name}')
         cursor.conn.commit()
     cursor.executeSql(
-        'insert into appLabel (label_key, app_id) select '', app.id from app where app.id not in (select lb.app_id from appLabel lb)')
+        "insert into appLabel (label_key, app_id) select '', app.id from app where app.id not in (select lb.app_id from appLabel lb)")
     cursor.close()
 
 

@@ -44,6 +44,10 @@ export default {
             if (card == null) {
                 return
             }
+            let width = 'width=\"\\d{1,4}\"'
+            let height = 'height=\"\\d{1,4}\"'
+            card.article = card.article.replaceAll(new RegExp(width,'g'), "width=\"100%\"");
+            card.article = card.article.replaceAll(new RegExp(height, 'g'), "");
             state.itemTag = true;
             state.card = card;
         }

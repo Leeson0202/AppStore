@@ -1,11 +1,18 @@
 <template>
-    <div class='itemHead'>
+    <div class='itemHead' v-show="itemTag">
         <div class="cover">
             <div class="item-icon">
                 <img :src="cardImg" alt="加载失败">
             </div>
             <div class="head-main">
                 <div class="app-title"> {{ cardName }}</div>
+                <div style="margin-top: 20px"/>
+                <el-button type="primary" round
+                           size="small">
+                    &nbsp;&nbsp;下载&nbsp;&nbsp;
+                </el-button>
+<!--                <i class="el-icon-star-off" style="font-size: xx-large; color: red;"/>-->
+
             </div>
         </div>
     </div>
@@ -18,12 +25,10 @@
 export default {
     name: "ItemHead",
     components: {},
-    props: ['card'],
+    props: ['card', 'itemTag'],
     data() {
         //这里存放数据
-        return {
-
-        };
+        return {};
     },
     //监听属性 类似于data概念
     computed: {
@@ -109,6 +114,7 @@ export default {
 }
 
 .app-title {
+    margin-top: 5px;
     font-size: xx-large;
     height: 1.5em;
     white-space: nowrap;

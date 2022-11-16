@@ -76,7 +76,7 @@ export default {
         selectItem() {
             //判断当前页面的位置
             let index = '';
-            if (this.$route.name === 'download')
+            if (this.$route.name === 'download' || this.$route.name === 'app')
                 index = this.$route.query.type ? this.$route.query.type : 'mac';
             else if (this.$route.name === 'navigation') {
                 index = this.$route.query.type ? this.$route.query.type : 'edit';

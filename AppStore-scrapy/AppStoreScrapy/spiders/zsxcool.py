@@ -5,51 +5,28 @@ from bs4 import BeautifulSoup
 
 # 解析文章和链接的函数
 # 传入的article html文本
-def parse_article(article):
-    article = article.replace("<strong>", "**")
-    article = article.replace("</strong>", "**")
+def parse_link(article):
     soup = BeautifulSoup(article, 'html.parser')
-    iterator = soup.article.children
-    resArticle = ""
+    iterator = soup.article.contents
     linkTag = False
     linkList = list()
-    for node in iterator:
+    idx = 0
+    while idx < len(iterator):
+        node = iterator[idx]
         if node.name == 'div':
             # div 下 [title, tips, image]  --> [文字，图片]
             divClass = node.attrs['class']
+            if 'ad-header' in divClass:
+                node.decompose()
+                continue
             if 'wp-block-pandastudio-title' in divClass:
                 # title
                 text = node.text.strip()
-                if resArticle[-4:] == '\n\n':
-                    pass
-                else:
-                    resArticle += '\n'
                 if text.find("下载") >= 0 and node.find_all(name='h2'):
                     # 表示已经遍历到下载链接位置，标记一下，直接退出
                     linkTag = True
+                    node.decompose()
                     continue
-                if node.find_all(name='h2'):
-                    resArticle += "\n## " + text + '\n'
-                elif node.find_all(name='h3'):
-                    resArticle += "### " + text + '\n'
-                elif node.find_all(name='h4'):
-                    resArticle += "#### " + text + '\n'
-                elif node.find_all(name='h5'):
-                    resArticle += "##### " + text + '\n'
-
-            elif 'wp-block-pandastudio-tips' in divClass:
-                # tips
-                p = node.find_all(name='p')
-                for _ in p:
-                    resArticle += "> " + _.text.strip() + '\n'
-
-            elif 'wp-block-image' in divClass:
-                # image
-                img = node.find_all(name='img')
-                if img:
-                    img = '<img src="' + img[0].attrs['src'].strip() + '" style="width:80%;" alt="' + img[0].attrs[
-                        'alt'].strip() + '" />\n\n'
-                    resArticle += img
 
         elif node.name == 'p':
             # 直接解析, 链接 --> 文字
@@ -67,31 +44,12 @@ def parse_article(article):
                     'name': name.replace('*', ''),
                     'url': url
                 })
-            else:
-                resArticle += node.text.strip() + '\n\n'
+                node.decompose()
+                continue
+        idx += 1
 
-        elif node.name == 'ul':
-            # li --> 文字
-            lis = node.find_all(name='li')
-            for _ in lis:
-                resArticle += "- " + _.text.strip() + '\n'
-            resArticle += '\n'
-
-        elif node.name == 'ol':
-            # li --> 文字
-            lis = node.find_all(name='li')
-            for _ in lis:
-                resArticle += "- " + _.text.strip() + '\n'
-
-        elif node.name == 'figure':
-            # image --> 图片 src
-            img = node.find_all(name='img')
-            if img:
-                img = '<img src="' + img[0].attrs['src'] + '" style="width:80%;" alt="' + img[0].attrs[
-                    'alt'] + '" />\n\n'
-                resArticle += img
-
-    return resArticle.strip(), linkList
+        # print(str(soup.article))
+    return str(soup.article), linkList
 
 
 # 字节智造 爬虫
@@ -178,7 +136,7 @@ class ZsxcoolSpider(scrapy.Spider):
         item['icon'] = icon
         item['description'] = description
         # 调用自定义函数 解析文章和下载链接
-        article, link = parse_article(article)
+        article, link = parse_link(article)
         if not link:
             return
         item['article'] = article
