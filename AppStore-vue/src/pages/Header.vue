@@ -2,7 +2,7 @@
     <el-menu :default-active="activeIndex" ref="elMenu" class="el-menu-demo"
              mode="horizontal" @select="handleSelect">
 
-        <span class="title" v-on:click="handleSelect('home',['home'])">AppStore</span>
+        <span v-on:click="handleSelect('home',['home'])">AppStore</span>
 
         <el-menu-item index="center">
             个人中心

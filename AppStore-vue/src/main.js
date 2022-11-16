@@ -2,6 +2,7 @@ import Vue from 'vue';
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import '@wangeditor/editor/dist/css/style.css';
+import "@/assets/css/markdown.mini.css"
 import axios from 'axios'
 
 import App from './App.vue';
