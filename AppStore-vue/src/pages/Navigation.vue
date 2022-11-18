@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <NavigationWrapper></NavigationWrapper>
         <Swrapper></Swrapper>
     </div>

@@ -24,6 +24,7 @@ Vue.use(ElementUI);
 // 关闭测试提示
 Vue.config.productionTip = false;
 
+
 new Vue({
     el: '#app',
     store,

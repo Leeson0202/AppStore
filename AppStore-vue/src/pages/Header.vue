@@ -76,10 +76,16 @@ export default {
         selectItem() {
             //判断当前页面的位置
             let index = '';
-            if (this.$route.name === 'download' || this.$route.name === 'app')
+            let header = document.getElementsByClassName('el-header')[0];
+            header.style.display = 'block';
+            if (this.$route.name === 'download' || this.$route.name === 'app') {
                 index = this.$route.query.type ? this.$route.query.type : 'mac';
-            else if (this.$route.name === 'navigation') {
+            } else if (this.$route.name === 'navigation') {
                 index = this.$route.query.type ? this.$route.query.type : 'edit';
+            } else if (this.$route.name === 'publish') {
+                index = this.$route.name;
+                header.style.display = 'none';
+
             } else {
                 index = this.$route.name;
             }
@@ -93,6 +99,17 @@ export default {
             let type = null;
             let label = null;
             let page = null;
+            // 如果是publish
+            if (keyPath[0] === 'publish') {
+                const {href} = this.$router.resolve({
+                    path: '/publish',
+                    query: {
+                        t: Date.now(),
+                    }
+                })
+                window.open(href, '_blank')
+                return;
+            }
             // 如果是download
             if (keyPath[0] === 'download') {
                 page = 1
@@ -112,16 +129,27 @@ export default {
             } else {
                 page = null;
             }
+
             // 进入相应页面
-            this.$router.push({
-                name: keyPath[0],
-                query: {
-                    "type": type,
-                    "label": label,
-                    'page': page,
-                    t: Date.now()
-                }
-            })
+            if (type === null && label === null) {
+                this.$router.push({
+                    name: keyPath[0],
+                    query: {
+                        t: Date.now()
+                    }
+                })
+
+            } else {
+                this.$router.push({
+                    name: keyPath[0],
+                    query: {
+                        "type": type,
+                        "label": label,
+                        'page': page,
+                        t: Date.now()
+                    }
+                })
+            }
 
         }
     },
