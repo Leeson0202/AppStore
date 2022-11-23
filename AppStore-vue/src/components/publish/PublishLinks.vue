@@ -7,7 +7,7 @@
             <el-table-column
                 label="软件版本"
                 prop="name"
-            width="200">
+                width="200">
             </el-table-column>
             <el-table-column
                 label="下载链接"
@@ -15,7 +15,7 @@
             </el-table-column>
             <el-table-column
                 align="right"
-            width="150">
+                width="150">
                 <template slot="header" slot-scope="scope">
                     <el-button size="mini" @click="dialogFormVisible = true">添加</el-button>
                 </template>
@@ -159,8 +159,8 @@ export default {
 <style scoped>
 .links {
     background: rgba(255, 255, 255, 0.9);
-    /*margin-top: 10px;*/
-    padding: 0 10px;
+    margin-top: 5px;
+    padding: 5px 10px 0 10px;
     border-radius: 4px;
     box-shadow: 0 0 1px #EBEEF5;
     font-size: 13px;

@@ -6,9 +6,9 @@
                 <PublishLabels/>
                 <!--description-->
                 <div style="width: 100%;margin: 10px 0 0 10px">
-                    <span style="font-size: 14px;color: #666;">&nbsp;&nbsp;应用描述：</span>
+                    <span class="h-span">&nbsp;&nbsp;应用描述：</span>
                     <el-input
-                        style="margin-top: 5px; font-weight: 500"
+                        style="margin-top: 6px; font-weight: 500"
                         type="textarea"
                         :rows="3"
                         placeholder="请输入相关描述"
@@ -17,7 +17,8 @@
                 </div>
 
             </div>
-            <div style="width: 178px; float: right;background: #eee;justify-content: center;">
+            <div
+                style="width: 178px; height: 178px;overflow: hidden; float: right;background: #f5f5f5;justify-content: center;border-radius: 5px">
                 <el-upload
                     class="avatar-uploader"
                     action="https://jsonplaceholder.typicode.com/posts/"
@@ -58,6 +59,7 @@ export default {
         //这里存放数据
         return {
             description: "",
+            imageUrl: '',
         }
     },
     //监听属性 类似于data概念
@@ -67,7 +69,23 @@ export default {
     //监控data中的数据变化
     watch: {},
     //方法集合
-    methods: {},
+    methods: {
+        handleAvatarSuccess(res, file) {
+            this.imageUrl = URL.createObjectURL(file.raw);
+        },
+        beforeAvatarUpload(file) {
+            const isJPG = file.type === 'image/jpeg';
+            const isLt2M = file.size / 1024 / 1024 < 2;
+
+            if (!isJPG) {
+                this.$message.error('上传头像图片只能是 JPG 格式!');
+            }
+            if (!isLt2M) {
+                this.$message.error('上传头像图片大小不能超过 2MB!');
+            }
+            return isJPG && isLt2M;
+        }
+    },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
 
@@ -98,6 +116,7 @@ export default {
 
 .icon-header {
     width: calc(100% - 20px);
+    margin-top: 5px;
     min-height: 178px;
     overflow: auto;
     background: #fff;
@@ -140,8 +159,9 @@ export default {
     overflow: hidden;
 }
 
-span {
+.h-span {
     font-size: 14px;
+    font-weight: 500;
     color: #666;
     user-select: none;
 }

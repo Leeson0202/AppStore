@@ -3,7 +3,7 @@
         <el-collapse @change="handleChange">
             <el-collapse-item title="一致性 Consistency" name="1">
                 <template slot="title">
-                    <span style="user-select: none;">&nbsp;&nbsp;标签：</span>
+                    <span style="user-select: none; font-size: 14px; color: #666;">&nbsp;&nbsp;标签：</span>
                     <!--            labels：&nbsp;-->
                     <el-tag class="label" closable size="medium" type="success" :disable-transitions="false"
                             v-for="type in this.checkedTypes"
@@ -96,10 +96,9 @@ export default {
 <style scoped>
 .PublishLabels {
     background: rgba(255, 255, 255, 0.9);
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 0 10px;
     border-radius: 4px;
-    font-size: 13px;
     color: #666;
 }
 
@@ -111,12 +110,9 @@ export default {
 .el-tag {
     user-select: none;
     cursor: pointer;
+    font-weight: 400;
 }
 
-span {
-    font-size: 14px;
-    color: #666;
-}
 </style>
 
 
