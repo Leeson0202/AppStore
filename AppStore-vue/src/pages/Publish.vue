@@ -34,12 +34,11 @@ export default {
     position: relative;
     top: 0px;
     /*background: rgba(240, 240, 240, 0.8);*/
-    z-index: 1000000;
+    z-index: 1;
     padding: 10px 20px 0 20px;
 }
 
-.title-area {
-    margin: 5px 10px;
-}
+
+
 
 </style>

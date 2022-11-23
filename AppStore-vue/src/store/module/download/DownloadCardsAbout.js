@@ -21,7 +21,7 @@ export default {
         // 更新 cards
         UpdateCards(context) {
             context.state.tag = false;
-            axios.get("/app/applist", {
+            axios.get("/app/cards", {
                 params: {
                     type: context.state.type === "all" ? null : context.state.type,
                     label: context.state.label === "all" ? null : context.state.label,

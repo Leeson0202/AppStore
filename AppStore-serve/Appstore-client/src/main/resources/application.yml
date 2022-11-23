@@ -1,0 +1,22 @@
+server:
+  port: 80
+spring:
+  main:
+    #允许存在多个Feign调用相同Service的接口
+    allow-bean-definition-overriding: true
+
+  application:
+    name: AppStore-client
+    cloud:
+      zookeeper:
+        connect-string: 127.0.0.1:2181
+
+  # 热部署报 404
+  devtools:
+    restart:
+      poll-interval: 3000ms
+      quiet-period: 2999ms
+
+logging:
+  level:
+    cn.as.springcloud.service.PaymentService: debug

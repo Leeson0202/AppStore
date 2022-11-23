@@ -17,7 +17,7 @@ export default {
         GetCard(context, appid) {
             context.state.itemTag = false;
             let card = null;
-            axios.get("/app/app/", {
+            axios.get("/app/app", {
                 params: {
                     'id': appid,
                     t: Date.now()

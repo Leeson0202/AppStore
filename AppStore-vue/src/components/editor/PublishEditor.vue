@@ -8,7 +8,7 @@
         />
         <Editor
             class="editor"
-            style="height: 500px; overflow-y: hidden;"
+            style="height: 300px;overflow: clip"
             v-model="html"
             :defaultConfig="editorConfig"
             :mode="mode"
@@ -29,7 +29,7 @@ export default Vue.extend({
             html: '<p>hello</p>',
             toolbarConfig: {},
             editorConfig: {placeholder: '请输入内容...'},
-            mode: 'default', // or 'simple'
+            mode: 'simple', // or 'simple'
         }
     },
     methods: {
@@ -53,6 +53,7 @@ export default Vue.extend({
 <style scoped>
 .editor {
     z-index: 10;
+    background: #fff;
 }
 </style>
 

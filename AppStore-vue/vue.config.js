@@ -19,7 +19,7 @@ module.exports = defineConfig({
         // 使用代理解决跨域问题
         proxy: {
             '/app': {
-                target: 'http://localhost:8011',
+                target: 'http://localhost:80',
                 changeOrigin: true,
                 pathRewrite: {
                     "^/app": '/'

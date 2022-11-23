@@ -8,6 +8,10 @@
             <el-main>
                 <router-view :key="$route.path + $route.query.t"></router-view>
                 <Footer></Footer>
+                <el-backtop style="z-index: 1000" target=".el-main"
+                            :right="60" :bottom="80">
+                    <div class="up-button">UP</div>
+                </el-backtop>
             </el-main>
         </el-container>
     </el-container>
@@ -96,6 +100,18 @@ export default {
         transition-duration: 1s;
 
     }
+}
+
+.up-button {
+    height: 100%;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 0 10px #eee;
+    border: #eee 1px solid;
+    border-radius: 5px;
+    text-align: center;
+    line-height: 40px;
+    color: #1989fa;
 }
 
 

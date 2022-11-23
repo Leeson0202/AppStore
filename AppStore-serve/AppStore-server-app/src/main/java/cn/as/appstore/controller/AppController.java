@@ -20,14 +20,15 @@ import java.awt.*;
  */
 @RestController
 @Slf4j
+@RequestMapping("api")
 public class AppController {
     /**
      * 服务对象
      */
     @Resource
     private AppService appService;
-    @Resource
-    private RestTemplate restTemplate;
+//    @Resource
+//    private RestTemplate restTemplate;
 
 
     /**
@@ -36,13 +37,12 @@ public class AppController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("app")
-    public ResponseEntity<App> queryById(Integer id) {
+    @RequestMapping("app")
+    public ResponseEntity<App> queryById(@RequestParam("id") Integer id) {
         if (id == null) {
             return ResponseEntity.badRequest().build();
         }
         return ResponseEntity.ok(this.appService.queryById(id));
-
     }
 
     /**
