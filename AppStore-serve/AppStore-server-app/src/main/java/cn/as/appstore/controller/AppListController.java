@@ -45,7 +45,7 @@ public class AppListController {
      */
     @RequestMapping("/cards")
     public ResponseEntity<Map<String, Object>> queryCards(
-            Map<String, String> map) {
+            @RequestParam Map<String, String> map) {
         System.out.println(map);
         String type = map.get("type");
         String label = map.get("label");
@@ -62,7 +62,7 @@ public class AppListController {
      */
     @RequestMapping("/total")
     public ResponseEntity<Map<String, Object>> queryCardTotal(
-           Map<String, String> map
+            Map<String, String> map
     ) {
         String type = map.get("type");
         String label = map.get("label");

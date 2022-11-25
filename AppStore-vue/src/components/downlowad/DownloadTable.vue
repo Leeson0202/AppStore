@@ -9,6 +9,7 @@
             />
         </div>
         <el-pagination
+            v-if="tag"
             background
             :page-size="20"
             layout="total, prev, pager, next"
@@ -43,7 +44,7 @@ export default {
     //方法集合
     methods: {
         ...mapActions('DownloadCardsAbout', ['GetCards']),
-        ...mapMutations('DownloadCardsAbout', ['SETPage']),
+        ...mapMutations('DownloadCardsAbout', ['SETPage', 'SETTag']),
         handleChangeItem(id) {
             console.log("click", id)
             this.$router.push({
@@ -71,6 +72,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
+        this.SETTag(false);
     },
     beforeCreate() {
     }, //生命周期 - 创建之前

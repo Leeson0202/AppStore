@@ -22,17 +22,15 @@ export default {
     },
     props: ['tag'],
     //监听属性 类似于data概念
-    computed: {
-    },
+    computed: {},
     //监控data中的数据变化
     watch: {
         tag(val, old) {
             if (val) {
-                this.showStyle.display = 'block'
+                this.showStyle.display = 'block';
             } else {
-                this.showStyle.display = 'none'
+                this.showStyle.display = 'none';
             }
-
         }
     },
     //方法集合
@@ -42,6 +40,7 @@ export default {
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
+        this.showStyle.display = 'block';
     },
     beforeCreate() {
     }, //生命周期 - 创建之前

@@ -37,6 +37,7 @@ public class AppController {
         map.put("type", type);
         map.put("label", label);
         map.put("page", page);
+        System.out.println(map);
 
         return this.appListService.queryCards(map);
     }

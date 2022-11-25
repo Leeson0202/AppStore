@@ -56,6 +56,9 @@ export default {
         },
     },
     mutations: {
+        SETTag(state, tag) {
+            this.tag = tag;
+        },
         // cards
         SETCards(state, res) {
             if (res === null || res === undefined) return
@@ -78,7 +81,7 @@ export default {
         // 设置 page
         SETPage(state, page) {
             state.page = page;
-        }
+        },
 
 
     },

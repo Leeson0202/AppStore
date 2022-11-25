@@ -18,14 +18,14 @@
 
             </div>
             <div
-                style="width: 178px; height: 178px;overflow: hidden; float: right;background: #f5f5f5;justify-content: center;border-radius: 5px">
+                class="icon-div">
                 <el-upload
                     class="avatar-uploader"
                     action="https://jsonplaceholder.typicode.com/posts/"
                     :show-file-list="false"
                     :on-success="handleAvatarSuccess"
                     :before-upload="beforeAvatarUpload">
-                    <img v-if="imageUrl" :src="imageUrl" class="avatar">
+                    <img v-if="icon" :src="icon" class="avatar" alt="">
                     <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
             </div>
@@ -57,14 +57,30 @@ export default {
     components: {PublishEditor, PublishLabels, PublishLinks},
     data() {
         //这里存放数据
-        return {
-            description: "",
-            imageUrl: '',
-        }
+        return {}
     },
     //监听属性 类似于data概念
     computed: {
         ...mapState('DownloadAbout', ['labelNames', 'typeNames']),
+        ...mapState('PublishAbout', ['description']),
+        // vuex 双向绑定
+        description: {
+            get() {
+                return this.$store.state.PublishAbout.description;
+            },
+            set(newVal) {
+                this.$store.commit('PublishAbout/SETDescription', newVal);
+            }
+        },
+        icon: {
+            get() {
+                return this.$store.state.PublishAbout.icon;
+            },
+            set(newIcon) {
+                this.$store.commit('PublishAbout/SETIcon', newIcon);
+
+            }
+        }
     },
     //监控data中的数据变化
     watch: {},
@@ -123,6 +139,18 @@ export default {
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px #ebeef5;
+}
+
+.icon-div {
+    width: 178px;
+    height: 178px;
+    overflow: hidden;
+    float: right;
+    background: #f5f5f5;
+    justify-content: center;
+    border-radius: 16px;
+    margin-right: 4px;
+    box-shadow: 0 0 10px #f5f5f5;
 }
 
 .avatar-uploader .el-upload {

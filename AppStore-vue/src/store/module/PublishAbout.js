@@ -8,7 +8,10 @@ export default {
         tag: 0, // 发布类型： 0表示软件，1表示经验分享
         checkedTypes: ['mac'],
         checkedLabels: ['tool'],
-        links: [{name: "阿里云盘", link: "http://www.baidu.com"}]
+        description: null,
+        icon: null,
+        links: [{name: "阿里云盘", link: "http://www.baidu.com"}],
+        article: null,
 
 
     },
@@ -62,6 +65,14 @@ export default {
 
             }
         },
+        // description
+        SETDescription(state, description) {
+            state.description = description;
+        },
+        // icon
+        SETIcon(state, icon) {
+            state.icon = icon;
+        },
         // link
         ADDLink(state, link) {
             state.links.push(link);
@@ -73,6 +84,10 @@ export default {
             console.log(list)
             state.links[list[0]].name = list[1].name;
             state.links[list[0]].link = list[1].link;
+        },
+        // article
+        SETArticle(state, article) {
+            state.article = article;
         }
 
     },

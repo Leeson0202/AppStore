@@ -20,7 +20,7 @@ public interface AppListService {
      */
     @RequestMapping("/cards")
     ResponseEntity<Map<String, Object>> queryCards(
-            @RequestParam("map") Map<String, String> map);
+            @RequestParam Map<String, String> map);
 
     /**
      * 通过 type和label 获取 总数量total

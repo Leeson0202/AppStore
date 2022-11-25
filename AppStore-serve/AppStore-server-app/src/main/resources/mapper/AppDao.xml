@@ -41,7 +41,7 @@
         a.view
         from app a
         <where>
-            <if test="type != null">
+            <if test="type != null and type != ''">
                 a.id in
                 (select tp.app_id
                 from appType as tp
@@ -52,7 +52,7 @@
                 )
             </if>
 
-            <if test="label != null">
+            <if test="label != null and label != ''">
                 and a.id in
                 (select lb.app_id
                 from appLabel as lb
@@ -68,23 +68,25 @@
 
     <!-- queryCardTotal 查询所有数量 by type label  -->
     <select id="queryCardTotal" resultType="integer">
-        select count(1) from app
+        select count(1) from app a
         <where>
-            app.id in
-            (select tp.app_id from appType tp
-            <where>
-                <if test="type != null">
+            <if test="type != null and type != ''">
+                a.id in
+                (select tp.app_id from appType as tp
+                <where>
                     and tp.type_key = #{type}
-                </if>
-            </where>
-            ) and app.id in
-            (select lb.app_id from appLabel lb
-            <where>
-                <if test="label != null">
+                </where>
+                )
+            </if>
+
+            <if test="label != null and label != ''">
+                and a.id in
+                (select lb.app_id from appLabel as lb
+                <where>
                     and lb.label_key = #{label}
-                </if>
-            </where>
-            )
+                </where>
+                )
+            </if>
         </where>
     </select>
 
