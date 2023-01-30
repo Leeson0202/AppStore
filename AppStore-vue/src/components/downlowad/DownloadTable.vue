@@ -107,6 +107,7 @@ export default {
 }
 
 .DownloadCard {
+    height: 140px;
     width: calc(100% / 3);
     float: left;
     transition-duration: 0.3s;

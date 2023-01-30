@@ -1,8 +1,8 @@
 <template>
     <div class='downloadCard' @click="handelClicked(card.id)">
-        <div style="margin: 16px 10px 16px 10px;height: calc(100% - 32px)">
+        <div style="margin: 16px 10px 16px 10px; height:calc(100% - 32px)">
             <div class="card-inner card-img">
-                <el-image lazy :src="cardImg" alt="图片加载失败"></el-image>
+                <el-image :src="cardImg" alt="图片加载失败"></el-image>
             </div>
             <div class="descriptions card-inner">
                 <div class="card-title">
@@ -37,13 +37,21 @@ export default {
     //监控data中的数据变化
     watch: {},
     //方法集合
-    methods: {},
+    methods: {
+        getWidth() {
+            let cardImages = document.getElementsByClassName('card-img');
+            for (let cardImage of cardImages) {
+                cardImage.style.width = cardImages[0].clientHeight + 2 + 'px';
+            }
+        }
+    },
     //生命周期 - 创建完成（可以访问当前this实例）
     created() {
 
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
+        this.getWidth();
     },
     beforeCreate() {
     }, //生命周期 - 创建之前
@@ -65,8 +73,6 @@ export default {
 .downloadCard {
     margin: auto;
     padding: 0;
-    height: 140px;
-    /*background: aliceblue;*/
     cursor: pointer;
 }
 
