@@ -1,0 +1,75 @@
+server:
+  port: 8021
+
+spring:
+  application:
+    name: appstore-server-user
+
+  cloud:
+    zookeeper:
+      connect-string: 127.0.0.1:2181
+
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动类
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/appstore?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=GMT%2B8&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  # 热部署报 404
+  devtools:
+    restart:
+      poll-interval: 3000ms
+      quiet-period: 2999ms
+
+  # redis
+  redis:
+    # 超时时间
+    timeout: 10000ms
+    # 服务器地址
+    host: localhost
+    # 服务器端口
+    port: 6379
+    # 数据库
+    database: 0
+    # 密码
+    # password: root
+    lettuce:
+      pool:
+        # 最大连接数
+        max-active: 1024
+        # 最大连接阻塞等待时间
+        max-wait: 10000ms
+        # 最大空闲连接
+        max-idle: 200
+        # 最小空闲连接
+        min-idle: 5
+
+# MyBatis
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: cn.as.appstore.entity
+
+# 打印sql语句
+logging:
+  level:
+    cn.as.appstore.dao: debug
+
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 1000000
+        readTimeout: 1000000
+  compression:
+    request:
+      enabled: false
+    response:
+      enabled: false

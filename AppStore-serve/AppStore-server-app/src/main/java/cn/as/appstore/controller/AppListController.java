@@ -32,6 +32,22 @@ public class AppListController {
 //    @Resource
 //    private RedisTemplate redisTemplate;
 
+    /**
+     * 获取热度最高的6款app
+     *
+     * @return
+     */
+    @GetMapping("hot/apps")
+    public ResponseEntity<Map<String, Object>> getApps() {
+        List<AppCard> apps = null;
+        apps = appService.hotApps();
+        if(apps.isEmpty()) return ResponseEntity.noContent().build();
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("apps", apps);
+        return ResponseEntity.ok(map);
+    }
+
 
     /**
      * 通过type 分页查询 cards和总数量total

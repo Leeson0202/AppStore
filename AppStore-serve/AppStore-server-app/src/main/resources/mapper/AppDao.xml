@@ -31,6 +31,18 @@
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="view" column="view" jdbcType="INTEGER"/>
     </resultMap>
+    <!-- hotApps -->
+    <select id="hotApps" resultMap="AppCardMap">
+        select
+            a.id,
+            a.icon,
+            a.name,
+            a.description,
+            a.view
+        from app a
+        ORDER BY a.view desc limit 0, 6
+    </select>
+
     <!--查询appCard by Type Label page-->
     <select id="queryByTypeLabel" resultMap="AppCardMap">
         select

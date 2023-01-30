@@ -93,5 +93,6 @@ public interface AppDao {
 
     Integer queryCardTotal(@Param("type") String type,@Param("label")  String label);
 
+    List<AppCard> hotApps();
 }
 

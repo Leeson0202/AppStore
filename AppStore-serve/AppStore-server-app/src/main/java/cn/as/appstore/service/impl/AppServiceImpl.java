@@ -106,4 +106,9 @@ public class AppServiceImpl implements AppService {
     public Integer queryCardTotal(String type, String label) {
         return appDao.queryCardTotal(type, label);
     }
+
+    @Override
+    public List<AppCard> hotApps() {
+        return appDao.hotApps();
+    }
 }

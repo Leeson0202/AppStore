@@ -65,4 +65,6 @@ public interface AppService {
     public List<Label> queryLabels();
 
     Integer queryCardTotal(String type, String label);
+
+    List<AppCard> hotApps();
 }

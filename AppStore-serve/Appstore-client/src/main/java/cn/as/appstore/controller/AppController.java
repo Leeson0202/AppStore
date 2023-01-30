@@ -19,6 +19,13 @@ public class AppController {
     private AppService appService;
     @Resource
     private AppListService appListService;
+    /**
+     *  6 个热门app
+     */
+    @RequestMapping("hot/apps")
+    public  ResponseEntity<Map<String, Object>> hotApps(){
+        return this.appListService.hotApps();
+    }
 
     /**
      * 通过type 分页查询 cards和总数量total
@@ -37,7 +44,7 @@ public class AppController {
         map.put("type", type);
         map.put("label", label);
         map.put("page", page);
-        System.out.println(map);
+//        System.out.println(map);
 
         return this.appListService.queryCards(map);
     }

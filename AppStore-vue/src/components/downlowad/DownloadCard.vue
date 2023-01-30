@@ -2,7 +2,7 @@
     <div class='downloadCard' @click="handelClicked(card.id)">
         <div style="margin: 16px 10px 16px 10px;height: calc(100% - 32px)">
             <div class="card-inner card-img">
-                <img :src="cardImg" alt="图片加载失败">
+                <el-image lazy :src="cardImg" alt="图片加载失败"></el-image>
             </div>
             <div class="descriptions card-inner">
                 <div class="card-title">
@@ -96,7 +96,7 @@ export default {
 }
 
 
-img {
+.el-image {
     height: 100%;
     border-radius: 16px;
     box-shadow: 5px 5px 15px #aaa;

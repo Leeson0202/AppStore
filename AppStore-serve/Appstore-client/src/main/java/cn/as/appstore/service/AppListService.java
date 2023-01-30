@@ -44,4 +44,11 @@ public interface AppListService {
      */
     @RequestMapping("/labels")
     ResponseEntity<Map<String, String>> queryLabels();
+
+    /**
+     * 热门app
+     * @return
+     */
+    @RequestMapping("/hot/apps")
+    ResponseEntity<Map<String, Object>> hotApps();
 }
