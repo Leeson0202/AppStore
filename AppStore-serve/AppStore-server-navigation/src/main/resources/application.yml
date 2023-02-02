@@ -1,9 +1,9 @@
 server:
-  port: 8001
+  port: 8031
 
 spring:
   application:
-    name: appstore-server-user
+    name: appstore-server-navigation
 
   cloud:
     zookeeper:

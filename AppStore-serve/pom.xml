@@ -14,6 +14,7 @@
         <module>AppStore-server-app</module>
         <module>Appstore-client</module>
         <module>AppStore-server-user</module>
+        <module>AppStore-server-navigation</module>
     </modules>
 
     <name>Maven</name>

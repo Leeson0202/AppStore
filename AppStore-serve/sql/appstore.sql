@@ -3,7 +3,10 @@ drop database if exists appstore;
 create database  appstore;
 use appstore;
 
+#======================================================
+# 应用页 app applink applabel apptype label type
 
+# 应用
 CREATE TABLE `app`
 (
     `id`          int          NOT NULL AUTO_INCREMENT COMMENT 'appID',
@@ -23,6 +26,7 @@ CREATE TABLE `app`
   COLLATE = utf8mb4_0900_ai_ci;
 
 
+# 应用的标签
 CREATE TABLE `appLabel`
 (
     `label_key` varchar(30) DEFAULT NULL COMMENT 'label key',
@@ -33,7 +37,7 @@ CREATE TABLE `appLabel`
   COLLATE = utf8mb4_0900_ai_ci;
 
 
-
+# 应用的链接
 CREATE TABLE `appLink`
 (
     `id`      int         DEFAULT NULL COMMENT 'appID',
@@ -47,7 +51,7 @@ CREATE TABLE `appLink`
   COLLATE = utf8mb4_0900_ai_ci;
 
 
-
+# 应用的类型
 CREATE TABLE `appType`
 (
     `type_key` varchar(30) DEFAULT NULL COMMENT 'type key',
@@ -58,7 +62,7 @@ CREATE TABLE `appType`
   COLLATE = utf8mb4_0900_ai_ci;
 
 
-
+# 标签
 CREATE TABLE `label`
 (
     `label_key` varchar(30) NOT NULL COMMENT 'label key',
@@ -69,7 +73,7 @@ CREATE TABLE `label`
   COLLATE = utf8mb4_0900_ai_ci;
 
 
-
+# 类型
 CREATE TABLE `type`
 (
     `type_key` varchar(30) NOT NULL COMMENT 'type key',
@@ -79,6 +83,7 @@ CREATE TABLE `type`
   DEFAULT CHARSET = utf8mb4
   COLLATE = utf8mb4_0900_ai_ci;
 
+# 插入标签和类型
 insert into type(type_key, name)
 values ('android', 'Android'),
        ('mac', 'Mac OS'),
@@ -90,12 +95,14 @@ values ('program', '编程'),
        ('tool', '工具');
 
 
-
+# 初始化时，插入没有类型的应用类型
 # insert into appLabel (label_key, app_id)
 # select '', app.id
 # from app
 # where app.id not in
 #       (select lb.app_id from appLabel lb)
 
-
-
+#======================================================
+# 导航页
+# label：  编程 考公 考研 剪辑
+# article

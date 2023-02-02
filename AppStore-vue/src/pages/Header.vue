@@ -1,6 +1,9 @@
 <template>
-    <el-menu :default-active="activeIndex" ref="elMenu" class="el-menu-demo"
-             mode="horizontal" @select="handleSelect">
+    <el-menu :default-active="activeIndex"
+             ref="elMenu"
+             class="el-menu-demo"
+             mode="horizontal"
+             @select="handleSelect">
 
         <span v-on:click="handleSelect('home',['home'])">AppStore</span>
 
