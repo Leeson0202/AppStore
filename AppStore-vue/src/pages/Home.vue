@@ -7,7 +7,7 @@
         <div class="hot">
             <!--应用下载榜首-->
             <div class="app-top">
-                <h3>下载榜单</h3>
+                <span>下载榜单</span>
                 <el-tabs tab-position="top" style="height: 200px; ">
                     <el-tab-pane label="今日">
                         <el-col style="margin-top: 6px" :span="24" v-for="(item, index) in apps" :key="index"
@@ -16,7 +16,8 @@
                                       :src="getIcon(item.icon)"
                                       alt=""></el-image>
                             <div style="float: left; height: 100%;margin-left: 10px; width: calc(100% - 70px);">
-                                <span style="font-size: larger;font-weight: normal; "> {{item.name}}</span></div>
+                                <span class="item-name"> {{ item.name }}</span></div>
+                            <hr>
                         </el-col>
                     </el-tab-pane>
                     <el-tab-pane label="本周">配置管理</el-tab-pane>
@@ -66,9 +67,7 @@ export default {
     created() {
         if (this.apps == null || this.apps.length === 0) {
             this.GetApps();
-
         }
-
     },
     //生命周期 - 挂载完成（可以访问DOM元素）
     mounted() {
@@ -108,15 +107,37 @@ export default {
     overflow: scroll;
 }
 
+.app-top > span {
+    font-size: 16px;
+    font-weight: bold;
+}
+
 .app-top::-webkit-scrollbar {
     display: none; /* Chrome Safari */
 }
 
+
+.el-col{
+    margin-top: 1px;
+}
 .top-icon {
     float: left;
-    height: 60px;
-    width: 60px;
+    height: 58px;
+    width: 58px;
     border-radius: 4px;
 
+}
+
+.item-name {
+    font-size: 14px;
+    line-height: 60px;
+}
+
+hr {
+    margin: 0;
+    width: 100%;
+    background-color: #adaaaa;
+    height: 1px;
+    border: none;
 }
 </style>

@@ -80,7 +80,6 @@ export default {
     background-color: #eee;
     border-radius: 16px;
     transition-duration: 0.4s;
-
 }
 
 /*!*奇数选择器*!*/
@@ -125,18 +124,19 @@ export default {
     text-overflow: ellipsis;
     color: #666;
     font-weight: 500;
-    font-size: 1em;
+    font-size: 15px;
 }
+
 
 .views {
     margin: 5px 0 0 0;
     color: #ee6969;
-    font-size: 0.8em;
+    font-size: 14px;
 }
 
 .description {
     margin-top: 10px;
-    font-size: 0.8em;
+    font-size: 12px;
     font-weight: normal;
     color: #aaaaaa;
 }

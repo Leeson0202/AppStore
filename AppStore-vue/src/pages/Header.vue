@@ -18,10 +18,10 @@
 
         <el-submenu index="navigation">
             <template slot="title">网站导航</template>
-            <el-menu-item index="programme">编程</el-menu-item>
-            <el-menu-item index="MBA">考研</el-menu-item>
-            <el-menu-item index="CSE">考公</el-menu-item>
-            <el-menu-item index="edit">剪辑</el-menu-item>
+            <el-menu-item index="Program">编程</el-menu-item>
+            <el-menu-item index="KaoYan">考研</el-menu-item>
+            <el-menu-item index="KaoGong">考公</el-menu-item>
+            <el-menu-item index="Cut">剪辑</el-menu-item>
         </el-submenu>
 
         <el-submenu index="download">

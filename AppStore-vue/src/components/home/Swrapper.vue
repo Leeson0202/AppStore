@@ -5,9 +5,9 @@
                 <div class="swrapperContainer"
                      style="width: calc(100% - 170px); margin-left: 20px; margin-right: 10px">
                     <div class="swrapper-tittle">
-                        <h4 class="medium">{{ item.name }}</h4>
+                        <span class="medium">{{ item.name }}</span>
                     </div>
-                    <div style="margin-top: 10px; ">
+                    <div class="item-description" style="margin-top: 10px; ">
                         <span>{{ item.description }}</span>
                     </div>
                 </div>
@@ -111,7 +111,13 @@ export default {
 }
 
 .swrapper-tittle {
-    margin-top: 22%;
+    line-height: 18px;
+    margin-top: 16%;
+    font-size: 18px;
+    font-weight: bold;
+}
+.item-description{
+    font-size: 12px;
 }
 </style>
 
