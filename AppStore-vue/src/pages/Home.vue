@@ -5,8 +5,7 @@
         <CodeView></CodeView>
         <div class="video-block" :style="{height: videoHeight + 'px'}">
             <video class="video" x5-playsinline webkit-playsinline="true" playsinline="true" muted="true" autoplay>
-                <source :src="require('@/assets/video/Air M2.mp4')">
-<!--                <source src="https://www.apple.com.cn/105/media/cn/mac/2022/56a714a6-7476-4896-b369-0ee5fa649290/films/macbook-pro-14-and-16-mac-mini-product/mac-macbook-pro-14-and-16-mac-mini-product-tpl-cn-2022_16x9.m3u8">-->
+                <source :src="require('@/assets/video/M2 Pro 1.mp4')">
             </video>
 
         </div>
