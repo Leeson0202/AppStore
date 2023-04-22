@@ -7,8 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
+import java.awt.*;
 
 /**
  * (App)表控制层
@@ -18,12 +20,15 @@ import javax.annotation.Resource;
  */
 @RestController
 @Slf4j
+@RequestMapping("api")
 public class AppController {
     /**
      * 服务对象
      */
     @Resource
     private AppService appService;
+//    @Resource
+//    private RestTemplate restTemplate;
 
 
     /**
@@ -32,8 +37,11 @@ public class AppController {
      * @param id 主键
      * @return 单条数据
      */
-    @GetMapping("app/{id}")
-    public ResponseEntity<App> queryById(@PathVariable("id") Integer id) {
+    @RequestMapping("app")
+    public ResponseEntity<App> queryById(@RequestParam("id") Integer id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
         return ResponseEntity.ok(this.appService.queryById(id));
     }
 

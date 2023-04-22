@@ -49,10 +49,27 @@ spring:
 # MyBatis
 mybatis:
   mapper-locations: classpath*:mapper/*.xml
-  type-aliases-package: cn.as.appstore.entities
+  type-aliases-package: cn.as.appstore.entity
 
 # 打印sql语句
 logging:
   level:
     cn.as.appstore.dao: debug
 
+feign:
+  hystrix:
+    enabled: true
+  okhttp:
+    enabled: true
+  httpclient:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 1000000
+        readTimeout: 1000000
+  compression:
+    request:
+      enabled: false
+    response:
+      enabled: false

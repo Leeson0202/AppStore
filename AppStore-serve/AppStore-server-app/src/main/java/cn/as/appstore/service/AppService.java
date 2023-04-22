@@ -2,6 +2,8 @@ package cn.as.appstore.service;
 
 import cn.as.appstore.entity.app.App;
 import cn.as.appstore.entity.app.AppCard;
+import cn.as.appstore.entity.app.Label;
+import cn.as.appstore.entity.app.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 
@@ -57,4 +59,12 @@ public interface AppService {
      * @return appCard列表
      */
     List<AppCard> queryByTypeLabel(String type, String label, Integer page);
+
+    List<Type> queryTypes();
+
+    public List<Label> queryLabels();
+
+    Integer queryCardTotal(String type, String label);
+
+    List<AppCard> hotApps();
 }

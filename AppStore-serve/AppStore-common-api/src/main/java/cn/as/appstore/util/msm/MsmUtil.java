@@ -29,13 +29,13 @@ public class MsmUtil {
      * "<your-access-key-secret>",   // The AccessKey Secret of the RAM account
      * "<your-sts-token>");          // STS Token
      **/
-    private final DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAI5tPopBCUj5yt31T9QT76", "3CyKbDS07IQQKQ2SF5CFiaiBMIt8MF");
+    private final DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIsdjhab31T9QT76", "3CyKbDasckjasbhsiaiBMIt8MF");
 
     private static final HashMap<Integer, String> map = new HashMap<Integer, String>() {
         {
-            put(0, "SMS_227741458"); // 注册
-            put(1, "SMS_254210472"); // 登陆
-            put(2, "SMS_254215484"); // 修改信息
+            put(0, "SMS_2277414581"); // 注册
+            put(1, "SMS_2542104721"); // 登陆
+            put(2, "SMS_2542154841"); // 修改信息
         }
     };
 

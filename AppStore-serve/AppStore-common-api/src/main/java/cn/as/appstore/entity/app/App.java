@@ -63,7 +63,7 @@ public class App implements Serializable {
     /**
      * links 下载链接
      */
-    private Map<String, String> links;
+    private List<Link> links;
 
 }
 

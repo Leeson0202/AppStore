@@ -1,12 +1,12 @@
 import scrapy
 from AppStoreScrapy.items import AppStoreScrapyItem
-from .zsxcool import parse_article
+from .zsxcool import parse_link
 
 
 class ZsxcoolpageSpider(scrapy.Spider):
     name = 'zsxcoolpage'
     allowed_domains = ['zsxcool.com']
-    start_urls = ['https://www.zsxcool.com/7086.html']
+    start_urls = ['https://www.zsxcool.com/30883.html']
 
     # def start_requests(self):
     #     return scrapy.Request('https://www.zsxcool.com/29411.html', callback=self.parse)
@@ -29,7 +29,7 @@ class ZsxcoolpageSpider(scrapy.Spider):
 
         item['name'] = name.strip()
         item['description'] = description
-        article, link = parse_article(article)
+        article, link = parse_link(article)
         item['article'] = article.strip()
         item['link'] = link
         item['date'] = date
